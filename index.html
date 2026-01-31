@@ -9,30 +9,25 @@
   --claro-red:#e60000; --claro-red-dark:#c80000;
   --bg:#f4f5f7; --card:#fff; --text:#111827; --muted:#64748b;
   --border:#e5e7eb; --radius:14px; --shadow:0 10px 30px rgba(0,0,0,0.08);
-  /* Degradê de Vermelhos Claros (Pastéis) */
-  --c-1:#fee2e2; /* Vermelho mais "escuro" (ainda pastel) */
-  --c-2:#fef2f2; 
-  --c-3:#fff5f5;
-  --c-4:#fffafb;
-  --c-5:#ffffff; /* Branco puro no final */
+  --c-1:#fee2e2; --c-2:#fef2f2; --c-3:#fff5f5; --c-4:#fffafb; --c-5:#ffffff;
 }
 *{box-sizing:border-box}
-body{margin:0;font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text); overflow-x: hidden;}
+body{margin:0;font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text)}
 
 .topbar{background:var(--claro-red);color:#fff;padding:14px 16px;position:sticky;top:0;z-index:1000;box-shadow:0 4px 12px rgba(0,0,0,0.1)}
 .topbar .row{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
 
-main{max-width:1200px;margin:20px auto;padding:0 16px;display:grid;grid-template-columns:1fr;gap:20px; align-items: start;}
-@media(min-width:1024px){ main{grid-template-columns:1.05fr 0.95fr} }
+/* SINCRONIA TOTAL: Removido o Sticky para as colunas rolarem juntas */
+main{max-width:1200px;margin:20px auto;padding:0 16px;display:grid;grid-template-columns:1fr;gap:20px}
+@media(min-width:1024px){ main{grid-template-columns:1.05fr 0.95fr; align-items: stretch;} }
 
 .header-actions{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
 .btn-limpar{background:var(--claro-red);color:#fff;border:none;padding:8px 16px;border-radius:999px;font-weight:800;cursor:pointer;font-size:12px;display:flex;align-items:center;gap:6px}
 
-/* ESQUERDA: INPUTS EM DEGRADÊ */
+/* ESQUERDA: INPUTS */
 .sector-card{border-radius:var(--radius);border:1px solid var(--border);margin-bottom:16px;box-shadow:var(--shadow);overflow:hidden}
 .sector-hd{padding:12px 16px;font-weight:800;font-size:13px;text-transform:uppercase;border-bottom:1px solid rgba(0,0,0,0.05); color: var(--claro-red-dark)}
 .sector-bd{padding:16px}
-
 .s-1{background:var(--c-1)}.s-2{background:var(--c-2)}.s-3{background:var(--c-3)}.s-4{background:var(--c-4)}.s-5{background:var(--c-5)}
 
 .field-group{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
@@ -41,26 +36,30 @@ main{max-width:1200px;margin:20px auto;padding:0 16px;display:grid;grid-template
 label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase}
 input, select, textarea{padding:10px;border:1px solid var(--border);border-radius:10px;font-size:15px;background:#fff}
 
-/* DIREITA: RESULTADOS STICKY */
-.results-column{display:flex;flex-direction:column;gap:12px;}
-@media(min-width:1024px){ .results-column { position: sticky; top: 80px; max-height: calc(100vh - 100px); padding-bottom: 20px; } }
-
-.res-container{background:#fff;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);padding:16px}
+/* DIREITA: RESULTADOS */
+.results-column{display:flex;flex-direction:column;gap:12px}
+.res-container{background:#fff;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);padding:16px; height: 100%;}
+.res-title{font-weight:800;font-size:18px;margin-bottom:15px}
 .badge-row{display:flex;gap:10px;margin-bottom:20px}
 .badge-box{border:1px dashed var(--claro-red);padding:8px 12px;border-radius:10px;color:var(--claro-red);font-size:12px;font-weight:800}
+
 .k-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:15px}
 @media(max-width:500px){ .k-grid{grid-template-columns:1fr} }
 .k-box{border:1px solid var(--border);border-radius:12px;padding:12px;background:#fff}
 .k-label{font-size:11px;font-weight:700;color:var(--muted);line-height:1.2;margin-bottom:5px;display:block}
 .k-val{font-size:20px;font-weight:900;color:#111827}
 .k-sub{font-size:10px;color:var(--muted);margin-top:4px;display:block;line-height:1.3}
+
 .eco-card{border:1px solid var(--border);border-radius:12px;padding:12px;margin-bottom:12px;background:#fff}
 .eco-label{font-size:12px;font-weight:800;color:var(--muted);margin-bottom:8px;display:block}
 .eco-val{font-size:24px;font-weight:900;color:var(--claro-red);display:block}
 .eco-footer{font-size:11px;color:var(--muted);border-top:1px solid #eee;padding-top:8px;margin-top:8px}
 
 .footer-full{grid-column:1/-1;background:#fff;padding:25px;border-radius:var(--radius);border:1px solid var(--border);text-align:center;margin-top:20px; position: relative;}
-.btn-whatsapp{background:#25d366;color:#fff;border:none;padding:16px 40px;border-radius:999px;font-weight:800;cursor:pointer;font-size:16px}
+
+/* BOTÃO WHATSAPP REDUZIDO */
+.btn-whatsapp{background:#25d366;color:#fff;border:none;padding:10px 24px;border-radius:999px;font-weight:800;cursor:pointer;font-size:14px;box-shadow:0 4px 8px rgba(37,211,102,0.2)}
+
 .acessorio-row{display:flex;gap:8px;margin-bottom:8px;align-items:center}
 .btn-plus{background:var(--claro-red);color:#fff;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-weight:bold}
 .ace-resumo{font-size:13px; font-weight:800; display:flex; justify-content:space-between; padding:4px 0}
@@ -84,8 +83,8 @@ input, select, textarea{padding:10px;border:1px solid var(--border);border-radiu
                 <div class="field"><label>Plano atual do cliente (texto)</label><input id="planoAtualNome" type="text" placeholder="Ex.: Claro Multi 50GB"></div>
                 <div class="field-group">
                     <div class="field"><label>Preço do plano (R$ / mês)</label><input id="planoAtualPreco" inputmode="decimal" placeholder="Ex.: 149,90"></div>
-                    <div class="field"><label>Dep. pagos – quantidade</label><input id="depPagos" type="number" placeholder="Ex.: 1"></div>
-                    <div class="field"><label>Dep. grátis – quantidade</label><input id="depGratis" type="number" placeholder="Ex.: 2"></div>
+                    <div class="field"><label>Dependentes pagos – quantidade</label><input id="depPagos" type="number" placeholder="Ex.: 1"></div>
+                    <div class="field"><label>Dependentes grátis – quantidade</label><input id="depGratis" type="number" placeholder="Ex.: 2"></div>
                     <div class="field"><label>Seguro do aparelho de interesse (R$ / mês)</label><input id="seguroInteresse" inputmode="decimal" placeholder="Ex.: 60,00"></div>
                     <div class="field"><label>Claro Clube (abatimento) (R$)</label><input id="claroClube" inputmode="decimal" placeholder="Ex.: 200,00"></div>
                     <div class="field"><label>Plano sugerido</label>
@@ -163,7 +162,7 @@ input, select, textarea{padding:10px;border:1px solid var(--border);border-radiu
 
     <div class="results-column">
         <div class="res-container">
-            <div class="res-title" style="font-weight:800; font-size:18px; margin-bottom:15px">Resultado e comparativo</div>
+            <div class="res-title">Resultado e comparativo</div>
             <div class="badge-row"><div class="badge-box">☆ Claro Up (seguro grátis)</div><div class="badge-box">⟲ Claro Troca (abatimento)</div></div>
             <div class="k-grid">
                 <div class="k-box"><span class="k-label">Valor total do plano atual (plano + dep + seg)</span><div class="k-val" id="outPlanoMensalAtual">R$ 0,00</div><span class="k-sub" id="outPlanoDet">—</span></div>
@@ -237,12 +236,11 @@ function recalc() {
         $("outPlanoSugeridoDet").textContent = `Grátis no plano: ${gSug} | Pagos adic: ${pAdic}`;
     }
 
-    const prePago = parseVal("prePagoTotal");
     const multi = Math.max(0, parseVal("multiTotal") - clube);
     const up = Math.max(0, parseVal("claroUpTotal") - clube);
     const incentivo = parseVal("incentivoTroca");
     
-    $("outPrePagoParc").textContent = brl(prePago / parcelas);
+    $("outPrePagoParc").textContent = brl(parseVal("prePagoTotal") / parcelas);
     $("outMultiParc").textContent = brl((multi / parcelas) + (multi > 0 ? 60 : 0));
     $("outUpParc").textContent = brl(up / parcelas);
     $("outUpTrocaParc").textContent = brl(Math.max(0, up - incentivo) / parcelas);
@@ -264,7 +262,7 @@ function recalc() {
     $("aceParcelaLabel").textContent = parcelas;
     $("aceParcelaValor").textContent = brl(tA / parcelas);
 
-    const n = new Date(); $("msgValidade").textContent = `Simulação válida para: ${n.toLocaleDateString()} às ${n.toLocaleTimeString()}`;
+    const n = new Date(); $("msgValidade").textContent = `Esta simulação é válida apenas para a data: ${n.toLocaleDateString()} às ${n.toLocaleTimeString()}`;
 }
 
 function copiar() {
