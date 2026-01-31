@@ -14,6 +14,7 @@
 *{box-sizing:border-box}
 body{margin:0;font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text)}
 
+/* Topbar limpa conforme solicitado */
 .topbar{background:var(--claro-red);color:#fff;padding:14px 16px;position:sticky;top:0;z-index:1000;box-shadow:0 4px 12px rgba(0,0,0,0.1)}
 .topbar .row{max-width:1200px;margin:0 auto;display:flex;justify-content:center;align-items:center}
 .topbar .title{font-weight:800; font-size:18px; letter-spacing:0.5px}
@@ -21,8 +22,9 @@ body{margin:0;font-family:system-ui,-apple-system,sans-serif;background:var(--bg
 main{max-width:1200px;margin:20px auto;padding:0 16px;display:grid;grid-template-columns:1fr;gap:20px;}
 @media(min-width:1024px){ main{grid-template-columns:1.05fr 0.95fr;} }
 
-.btn-limpar{background:var(--claro-red);color:#fff;border:none;padding:8px 16px;border-radius:999px;font-weight:800;cursor:pointer;font-size:12px;display:flex;align-items:center;gap:6px;margin-bottom:15px}
+.btn-limpar{background:var(--claro-red);color:#fff;border:none;padding:8px 16px;border-radius:999px;font-weight:800;cursor:pointer;font-size:12px;margin-bottom:15px}
 
+/* ESQUERDA: INPUTS EM DEGRADÊ */
 .sector-card{border-radius:var(--radius);border:1px solid var(--border);margin-bottom:16px;box-shadow:var(--shadow);overflow:hidden}
 .sector-hd{padding:12px 16px;font-weight:800;font-size:13px;text-transform:uppercase;border-bottom:1px solid rgba(0,0,0,0.05); color: var(--claro-red-dark)}
 .sector-bd{padding:16px}
@@ -34,29 +36,28 @@ main{max-width:1200px;margin:20px auto;padding:0 16px;display:grid;grid-template
 label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase}
 input, select, textarea{padding:10px;border:1px solid var(--border);border-radius:10px;font-size:15px;background:#fff}
 
-.results-column{display:flex;flex-direction:column;gap:12px;}
-.res-container{background:#fff;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);padding:16px}
-.res-title{font-weight:800;font-size:18px;margin-bottom:15px}
+/* DIREITA: RESULTADOS FIÉIS AO PRINT 1 */
+.res-container{background:#fff;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);padding:20px}
 .badge-row{display:flex;gap:10px;margin-bottom:20px}
-.badge-box{border:1px dashed var(--claro-red);padding:8px 12px;border-radius:10px;color:var(--claro-red);font-size:12px;font-weight:800}
+.badge-box{border:1px dashed var(--claro-red);padding:8px 12px;border-radius:10px;color:var(--claro-red);font-size:13px;font-weight:800;display:flex;align-items:center;gap:6px}
 
 .k-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:15px}
+@media(max-width:500px){ .k-grid{grid-template-columns:1fr} }
 .k-box{border:1px solid var(--border);border-radius:12px;padding:12px;background:#fff; position: relative; min-height: 125px;}
-.k-label{font-size:11px;font-weight:700;color:var(--muted);line-height:1.2;margin-bottom:5px;display:block; padding-right: 50px;}
+.k-label{font-size:11px;font-weight:700;color:var(--muted);line-height:1.2;margin-bottom:5px;display:block; padding-right: 55px;}
 .k-val{font-size:20px;font-weight:900;color:#111827}
-.k-sub{font-size:10px;color:var(--muted);margin-top:4px;display:block;line-height:1.3; max-width: 80%;}
+.k-sub{font-size:10px;color:var(--muted);margin-top:4px;display:block;line-height:1.3; max-width: 75%;}
 
 /* Stick Claro Clube no Ponto Médio Direito */
-.claro-clube-stick{position: absolute; top: 50%; right: 10px; transform: translateY(-50%); background: var(--claro-red); color: #fff; width: 55px; height: 55px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 8px; font-weight: 900; text-align: center; line-height: 1; visibility: hidden; z-index: 5;}
+.claro-clube-stick{position: absolute; top: 50%; right: 8px; transform: translateY(-50%); background: var(--claro-red); color: #fff; width: 58px; height: 58px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 8px; font-weight: 900; text-align: center; line-height: 1; visibility: hidden; z-index: 5; box-shadow: 0 4px 8px rgba(0,0,0,0.15);}
 .claro-clube-stick b { font-size: 9px; margin-top: 2px;}
 
-.eco-card{border:1px solid var(--border);border-radius:12px;padding:12px;margin-bottom:12px;background:#fff}
+.eco-card{border:1px solid var(--border);border-radius:12px;padding:15px;margin-bottom:12px;background:#fff}
 .eco-label{font-size:12px;font-weight:800;color:var(--muted);margin-bottom:8px;display:block}
 .eco-val{font-size:24px;font-weight:900;color:var(--claro-red);display:block}
 .eco-footer{font-size:11px;color:var(--muted);border-top:1px solid #eee;padding-top:8px;margin-top:8px}
 
-.footer-full{grid-column:1/-1;background:#fff;padding:25px;border-radius:var(--radius);border:1px solid var(--border);text-align:center;margin-top:20px;}
-.btn-whatsapp{background:#25d366;color:#fff;border:none;padding:10px 20px;border-radius:999px;font-weight:800;cursor:pointer;font-size:13px;}
+.btn-whatsapp{background:#25d366;color:#fff;border:none;padding:10px 24px;border-radius:999px;font-weight:800;cursor:pointer;font-size:14px;box-shadow:0 4px 10px rgba(37,211,102,0.2)}
 </style>
 </head>
 <body>
@@ -65,30 +66,29 @@ input, select, textarea{padding:10px;border:1px solid var(--border);border-radiu
 
 <main>
     <div class="inputs-column">
-        <button class="btn-limpar" onclick="limparTudo()">Limpar</button>
+        <button class="btn-limpar" onclick="limparTudo()">Limpar Tudo</button>
+        
         <div class="sector-card s-1">
-            <div class="sector-hd">1. Plano Atual</div>
+            <div class="sector-hd">1. Plano e Seguro Atual</div>
             <div class="sector-bd">
                 <div class="field-group">
-                    <div class="field"><label>Preço Plano</label><input id="planoAtualPreco" inputmode="decimal"></div>
-                    <div class="field"><label>Dep. pagos</label><input id="depPagos" type="number"></div>
-                    <div class="field"><label>Dep. grátis</label><input id="depGratis" type="number"></div>
-                    <div class="field"><label>Seguro Atual</label><input id="seguroInteresse" inputmode="decimal"></div>
-                    <div class="field"><label>Claro Clube</label><input id="claroClube" inputmode="decimal"></div>
+                    <div class="field"><label>Preço Plano (R$)</label><input id="planoAtualPreco" inputmode="decimal" placeholder="Ex: 149,90"></div>
+                    <div class="field"><label>Seguro Atual (R$)</label><input id="seguroInteresse" inputmode="decimal" placeholder="Ex: 60,00"></div>
+                    <div class="field"><label>Claro Clube (Abatimento R$)</label><input id="claroClube" inputmode="decimal" placeholder="Ex: 200,00"></div>
                 </div>
             </div>
         </div>
 
         <div class="sector-card s-3">
-            <div class="sector-hd">2. Aparelho Ofertado</div>
+            <div class="sector-hd">2. iPhone Ofertado (Claro Up)</div>
             <div class="sector-bd">
                 <div class="field-group">
-                    <div class="field"><label>Multi Total</label><input id="multiTotal" inputmode="decimal"></div>
-                    <div class="field"><label>Claro Up Total</label><input id="claroUpTotal" inputmode="decimal"></div>
-                    <div class="field"><label>Incentivo Troca</label><input id="incentivoTroca" inputmode="decimal"></div>
-                    <div class="field"><label>Residual</label><input id="residual" inputmode="decimal"></div>
+                    <div class="field"><label>Multi Total (R$)</label><input id="multiTotal" inputmode="decimal"></div>
+                    <div class="field"><label>Claro Up Total (R$)</label><input id="claroUpTotal" inputmode="decimal"></div>
+                    <div class="field"><label>Incentivo Troca (R$)</label><input id="incentivoTroca" inputmode="decimal"></div>
+                    <div class="field"><label>Residual (R$)</label><input id="residual" inputmode="decimal"></div>
                 </div>
-                <div class="field"><label>Parcelamento (2x a 21x)</label>
+                <div class="field"><label>Parcelamento</label>
                     <select id="parcelasSel">
                         </select>
                 </div>
@@ -96,41 +96,49 @@ input, select, textarea{padding:10px;border:1px solid var(--border);border-radiu
         </div>
 
         <div class="sector-card s-4">
-            <div class="sector-hd">3. Aparelho de Interesse</div>
+            <div class="sector-hd">3. Outro Aparelho de Interesse</div>
             <div class="sector-bd">
-                <div class="field"><label>Aparelho Interesse Total</label><input id="totalInteresse" inputmode="decimal"></div>
+                <div class="field"><label>Aparelho de Interesse Total (R$)</label><input id="totalInteresse" inputmode="decimal"></div>
             </div>
         </div>
     </div>
 
     <div class="results-column">
         <div class="res-container">
-            <div class="res-title">Resultado e comparativo</div>
+            <h2 style="font-size:18px; margin-top:0">Resultado e comparativo</h2>
+            <div class="badge-row">
+                <div class="badge-box">☆ Claro Up (seguro grátis)</div>
+                <div class="badge-box">⟲ Claro Troca (abatimento)</div>
+            </div>
+
             <div class="k-grid">
                 <div class="k-box">
                     <span class="k-label">Multi – parcela no cartão (com Proteção Móvel)</span>
                     <div class="k-val" id="outMultiParc">R$ 60,00</div>
-                    <span class="k-sub">R$60 do seguro cobrado na fatura</span>
-                    <span id="txtMultiSemSeg" style="color:red; font-size:10px; font-weight:bold; display:none;"><br>Valor aparelho sem seguro: <span id="valMultiSemSeg">R$ 0,00</span></span>
+                    <span class="k-sub">R$60 do seguro cobrado na fatura do cliente.</span>
+                    <span id="txtMultiSemSeg" style="color:red; font-size:11px; font-weight:bold; display:none; margin-top:5px">Valor aparelho sem seguro: <span id="valMultiSemSeg">R$ 0,00</span></span>
                     <div class="claro-clube-stick">CLARO<br>CLUBE<br><b id="stick1">R$ 0</b></div>
                 </div>
+
                 <div class="k-box">
                     <span class="k-label">Multi + Claro Up – parcela no cartão</span>
                     <div class="k-val" id="outUpParc">R$ 0,00</div>
-                    <span class="k-sub">Seguro Proteção Móvel grátis</span>
+                    <span class="k-sub">Seguro Proteção Móvel grátis.</span>
                     <div class="claro-clube-stick">CLARO<br>CLUBE<br><b id="stick2">R$ 0</b></div>
                 </div>
+
                 <div class="k-box">
-                    <span class="k-label">Multi + Claro Up + Troca – parcela no cartão</span>
+                    <span class="k-label">Multi + Claro Up + Claro Troca – parcela no cartão</span>
                     <div class="k-val" id="outUpTrocaParc">R$ 0,00</div>
                     <span class="k-sub">(Total − incentivo) ÷ parcelas</span>
                     <div class="claro-clube-stick">CLARO<br>CLUBE<br><b id="stick3">R$ 0</b></div>
                 </div>
+
                 <div class="k-box">
                     <span class="k-label">Plano atual – parcela (com seguro atual)</span>
                     <div class="k-val" id="outInteresseParc">R$ 0,00</div>
                     <span class="k-sub">(Aparelho ÷ parcelas) + seguro atual</span>
-                    <span id="txtIntSemSeg" style="color:red; font-size:10px; font-weight:bold; display:none;"><br>Valor aparelho sem seguro: <span id="valIntSemSeg">R$ 0,00</span></span>
+                    <span id="txtIntSemSeg" style="color:red; font-size:11px; font-weight:bold; display:none; margin-top:5px">Valor aparelho sem seguro: <span id="valIntSemSeg">R$ 0,00</span></span>
                     <div class="claro-clube-stick">CLARO<br>CLUBE<br><b id="stick4">R$ 0</b></div>
                 </div>
             </div>
@@ -138,12 +146,17 @@ input, select, textarea{padding:10px;border:1px solid var(--border);border-radiu
             <div class="eco-card">
                 <span class="eco-label">Economia total fazendo Claro Multi com Claro Up (sem troca)</span>
                 <div class="eco-val" id="outEcoTotalSem">R$ 1.260,00</div>
-                <div class="eco-footer">Obs: R$60 do seguro x parcelas</div>
+                <div class="eco-footer">Obs: R$60 do seguro x <span id="lblParcelas">21</span> parcelas.</div>
             </div>
 
-            <div class="k-box" style="min-height: auto;">
+            <div class="k-box" style="min-height: auto; margin-top:10px">
                 <span class="k-label">Residual Claro Up (custo futuro no 22º mês se não renovar)</span>
                 <div class="k-val" id="outResidual">R$ 0,00</div>
+                <span class="k-sub">Pode quitar à vista ou parcelar após o 21º mês.</span>
+            </div>
+
+            <div style="text-align:center; margin-top:20px">
+                <button class="btn-whatsapp" onclick="copiar()">Copiar Resumo (WhatsApp)</button>
             </div>
         </div>
     </div>
@@ -153,7 +166,7 @@ input, select, textarea{padding:10px;border:1px solid var(--border);border-radiu
 const $ = (id) => document.getElementById(id);
 const brl = (v) => Number(v).toLocaleString("pt-BR", { style:"currency", currency:"BRL" });
 
-// Gera parcelamento de 2 a 21
+// Gera parcelas de 2 a 21
 const sel = $("parcelasSel");
 for(let i=2; i<=21; i++){
     let opt = document.createElement("option");
@@ -168,43 +181,42 @@ function recalc() {
     const parcelas = parseInt($("parcelasSel").value);
     const clube = parseVal("claroClube");
     const seguro = parseVal("seguroInteresse");
-    const multiTotal = parseVal("multiTotal");
-    const upTotal = parseVal("claroUpTotal");
-    const intTotal = parseVal("totalInteresse");
+    const multiT = parseVal("multiTotal");
+    const upT = parseVal("claroUpTotal");
+    const intT = parseVal("totalInteresse");
     const incentivo = parseVal("incentivoTroca");
 
-    // Stick Visibility
+    // Stick Claro Clube
     document.querySelectorAll(".claro-clube-stick").forEach(el => {
         el.style.visibility = clube > 0 ? "visible" : "hidden";
         el.querySelector('b').textContent = brl(clube);
     });
 
-    // Multi Parcela
-    const mBase = Math.max(0, multiTotal - clube);
+    // Multi
+    const mBase = Math.max(0, multiT - clube);
     const mParc = (mBase / parcelas) + (mBase > 0 ? 60 : 0);
     $("outMultiParc").textContent = brl(mParc);
-    
-    // Condicional: Aparecer Valor Sem Seguro
-    if(multiTotal > 0){
+    if(multiT > 0){
         $("txtMultiSemSeg").style.display = "block";
         $("valMultiSemSeg").textContent = brl(mParc - 60);
     } else { $("txtMultiSemSeg").style.display = "none"; }
 
     // Up e Troca
-    const uBase = Math.max(0, upTotal - clube);
+    const uBase = Math.max(0, upT - clube);
     $("outUpParc").textContent = brl(uBase / parcelas);
     $("outUpTrocaParc").textContent = brl(Math.max(0, uBase - incentivo) / parcelas);
 
     // Interesse
-    const iBase = Math.max(0, intTotal - clube);
+    const iBase = Math.max(0, intT - clube);
     const iParc = (iBase / parcelas) + (iBase > 0 ? seguro : 0);
     $("outInteresseParc").textContent = brl(iParc);
-    
-    if(intTotal > 0){
+    if(intT > 0){
         $("txtIntSemSeg").style.display = "block";
         $("valIntSemSeg").textContent = brl(iParc - seguro);
     } else { $("txtIntSemSeg").style.display = "none"; }
 
+    // Economia Total
+    $("lblParcelas").textContent = parcelas;
     $("outEcoTotalSem").textContent = brl(60 * parcelas);
     $("outResidual").textContent = brl(parseVal("residual"));
 }
@@ -212,6 +224,11 @@ function recalc() {
 function limparTudo() {
     document.querySelectorAll("input").forEach(el => el.value = "");
     recalc();
+}
+
+function copiar() {
+    let t = `*SIMULAÇÃO CLARO UP*\n💳 *Parcela:* ${$("outUpParc").textContent}\n💰 *Economia:* ${$("outEcoTotalSem").textContent}\n📍 *Residual:* ${$("outResidual").textContent}`;
+    navigator.clipboard.writeText(t).then(() => alert("Copiado!"));
 }
 
 document.querySelectorAll("input, select").forEach(el => el.addEventListener("input", recalc));
