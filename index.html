@@ -42,10 +42,26 @@ input, select, textarea{padding:10px;border:1px solid var(--border);border-radiu
 
 .k-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:15px}
 @media(max-width:500px){ .k-grid{grid-template-columns:1fr} }
-.k-box{border:1px solid var(--border);border-radius:12px;padding:12px;background:#fff}
+
+/* Ajuste na box para suportar o stick inferior */
+.k-box{border:1px solid var(--border);border-radius:12px;padding:12px;background:#fff;position:relative;overflow:hidden;min-height:100px}
 .k-label{font-size:11px;font-weight:700;color:var(--muted);line-height:1.2;margin-bottom:5px;display:block}
 .k-val{font-size:20px;font-weight:900;color:#111827}
 .k-sub{font-size:10px;color:var(--muted);margin-top:4px;display:block;line-height:1.3}
+
+/* Stick Retangular Claro Clube */
+.claro-clube-rect {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: var(--claro-red);
+    color: #fff;
+    padding: 4px 8px;
+    font-size: 10px;
+    font-weight: 800;
+    border-top-left-radius: 8px;
+    display: none; /* Inicia oculto */
+}
 
 .eco-card{border:1px solid var(--border);border-radius:12px;padding:12px;margin-bottom:12px;background:#fff}
 .eco-label{font-size:12px;font-weight:800;color:var(--muted);margin-bottom:8px;display:block}
@@ -163,7 +179,14 @@ input, select, textarea{padding:10px;border:1px solid var(--border);border-radiu
                 <div class="k-box"><span class="k-label">Valor total do plano atual (plano + dep + seg)</span><div class="k-val" id="outPlanoMensalAtual">R$ 0,00</div><span class="k-sub" id="outPlanoDet">—</span></div>
                 <div class="k-box"><span class="k-label">Plano sugerido – custo mensal (considerando dep. grátis)</span><div class="k-val" id="outPlanoSugerido">R$ 0,00</div><span class="k-sub" id="outPlanoSugeridoDet">—</span></div>
                 <div class="k-box"><span class="k-label">Pré-pago – parcela no cartão</span><div class="k-val" id="outPrePagoParc">R$ 0,00</div><span class="k-sub">Pré-pago total ÷ parcelas (sem Claro Clube)</span></div>
-                <div class="k-box"><span class="k-label">Multi – parcela no cartão (com Proteção Móvel)</span><div class="k-val" id="outMultiParc">R$ 60,00</div><span class="k-sub">Com abatimento Claro Clube + R$60 seguro</span></div>
+                
+                <div class="k-box">
+                    <span class="k-label">Multi – parcela no cartão (com Proteção Móvel)</span>
+                    <div class="k-val" id="outMultiParc">R$ 60,00</div>
+                    <span class="k-sub">Com abatimento Claro Clube + R$60 seguro</span>
+                    <div id="stickClaroClube" class="claro-clube-rect">CLARO CLUBE: <span id="valStickClaro">R$ 0,00</span></div>
+                </div>
+
                 <div class="k-box"><span class="k-label">Multi + Claro Up – parcela no cartão</span><div class="k-val" id="outUpParc">R$ 0,00</div><span class="k-sub">Com abatimento Claro Clube (seguro grátis)</span></div>
                 <div class="k-box"><span class="k-label">Multi + Claro Up + Troca – parcela no cartão</span><div class="k-val" id="outUpTrocaParc">R$ 0,00</div><span class="k-sub">Claro Clube + Incentivo Troca</span></div>
                 <div class="k-box"><span class="k-label">Plano atual – aparelho de interesse (R$)</span><div class="k-val" id="outInteresseTotal">R$ 0,00</div><span class="k-sub">Valor Total com abatimento Claro Clube</span></div>
@@ -218,7 +241,14 @@ function recalc() {
     const seguroAtual = parseVal("seguroInteresse");
     const clube = parseVal("claroClube");
 
-    // Plano Atual
+    // Lógica do Stick Claro Clube
+    if (clube > 0) {
+        $("stickClaroClube").style.display = "block";
+        $("valStickClaro").textContent = brl(clube);
+    } else {
+        $("stickClaroClube").style.display = "none";
+    }
+
     const totalPlano = planoPreco + (depPagos * 50) + seguroAtual;
     $("outPlanoMensalAtual").textContent = brl(totalPlano);
     $("outPlanoDet").textContent = `Plano: ${brl(planoPreco)} | Dep Pagos: ${depPagos} | Dep Grátis: ${depGratis} | Seg: ${brl(seguroAtual)}`;
@@ -232,14 +262,12 @@ function recalc() {
         $("outPlanoSugeridoDet").textContent = `Grátis no plano: ${gSug} | Pagos adic: ${pAdic}`;
     }
 
-    // Aparelhos com Lógica Claro Clube (Abate de tudo menos Pré-pago)
     const prePagoTotal = parseVal("prePagoTotal");
     const multiBase = Math.max(0, parseVal("multiTotal") - clube);
     const upBase = Math.max(0, parseVal("claroUpTotal") - clube);
     const incentivo = parseVal("incentivoTroca");
     const intBase = Math.max(0, parseVal("totalInteresse") - clube);
     
-    // Resultados
     $("outPrePagoParc").textContent = brl(prePagoTotal / parcelas);
     $("outMultiParc").textContent = brl((multiBase / parcelas) + (multiBase > 0 ? 60 : 0));
     $("outUpParc").textContent = brl(upBase / parcelas);
@@ -248,7 +276,6 @@ function recalc() {
     $("outInteresseTotal").textContent = brl(intBase);
     $("outInteresseParc").textContent = brl((intBase / parcelas) + (intBase > 0 ? seguroAtual : 0));
 
-    // Economias
     const ecoM = (multiBase > 0) ? (((multiBase/parcelas)+60) - (upBase/parcelas)) : 60;
     $("outEcoMensal").textContent = brl(ecoM);
     $("outEcoTotalAparelho").textContent = brl(ecoM * parcelas);
@@ -256,7 +283,6 @@ function recalc() {
     $("outEcoTotalCom").textContent = brl((multiBase + (60 * parcelas)) - (upBase - incentivo));
     $("outResidual").textContent = brl(parseVal("residual"));
 
-    // Acessórios
     let tA = 0; document.querySelectorAll(".ace-preco").forEach(el => tA += parseFloat(el.value) || 0);
     $("totalAcessorios").textContent = brl(tA);
     $("aceParcelaLabel").textContent = parcelas;
