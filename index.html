@@ -9,6 +9,7 @@
   --claro-red:#e60000; --claro-red-dark:#c80000;
   --bg:#f4f5f7; --card:#fff; --text:#111827; --muted:#64748b;
   --border:#e5e7eb; --radius:14px; --shadow:0 10px 30px rgba(0,0,0,0.08);
+  /* Degradê de Vermelhos Pastéis solicitado */
   --c-1:#fee2e2; --c-2:#fef2f2; --c-3:#fff5f5; --c-4:#fffafb; --c-5:#ffffff;
 }
 *{box-sizing:border-box}
@@ -17,14 +18,14 @@ body{margin:0;font-family:system-ui,-apple-system,sans-serif;background:var(--bg
 .topbar{background:var(--claro-red);color:#fff;padding:14px 16px;position:sticky;top:0;z-index:1000;box-shadow:0 4px 12px rgba(0,0,0,0.1)}
 .topbar .row{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
 
-/* SINCRONIA TOTAL: Removido o Sticky para as colunas rolarem juntas */
-main{max-width:1200px;margin:20px auto;padding:0 16px;display:grid;grid-template-columns:1fr;gap:20px}
-@media(min-width:1024px){ main{grid-template-columns:1.05fr 0.95fr; align-items: stretch;} }
+/* SINCRONIA TOTAL: Removido 'align-items: start' e 'sticky' para rolagem unificada */
+main{max-width:1200px;margin:20px auto;padding:0 16px;display:grid;grid-template-columns:1fr;gap:20px;}
+@media(min-width:1024px){ main{grid-template-columns:1.05fr 0.95fr;} }
 
 .header-actions{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
 .btn-limpar{background:var(--claro-red);color:#fff;border:none;padding:8px 16px;border-radius:999px;font-weight:800;cursor:pointer;font-size:12px;display:flex;align-items:center;gap:6px}
 
-/* ESQUERDA: INPUTS */
+/* ESQUERDA: INPUTS EM DEGRADÊ */
 .sector-card{border-radius:var(--radius);border:1px solid var(--border);margin-bottom:16px;box-shadow:var(--shadow);overflow:hidden}
 .sector-hd{padding:12px 16px;font-weight:800;font-size:13px;text-transform:uppercase;border-bottom:1px solid rgba(0,0,0,0.05); color: var(--claro-red-dark)}
 .sector-bd{padding:16px}
@@ -36,9 +37,10 @@ main{max-width:1200px;margin:20px auto;padding:0 16px;display:grid;grid-template
 label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase}
 input, select, textarea{padding:10px;border:1px solid var(--border);border-radius:10px;font-size:15px;background:#fff}
 
-/* DIREITA: RESULTADOS */
-.results-column{display:flex;flex-direction:column;gap:12px}
-.res-container{background:#fff;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);padding:16px; height: 100%;}
+/* DIREITA: RESULTADOS - SINCRONIA DE ROLAGEM MANTIDA */
+.results-column{display:flex;flex-direction:column;gap:12px;}
+
+.res-container{background:#fff;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);padding:16px}
 .res-title{font-weight:800;font-size:18px;margin-bottom:15px}
 .badge-row{display:flex;gap:10px;margin-bottom:20px}
 .badge-box{border:1px dashed var(--claro-red);padding:8px 12px;border-radius:10px;color:var(--claro-red);font-size:12px;font-weight:800}
@@ -58,7 +60,7 @@ input, select, textarea{padding:10px;border:1px solid var(--border);border-radiu
 .footer-full{grid-column:1/-1;background:#fff;padding:25px;border-radius:var(--radius);border:1px solid var(--border);text-align:center;margin-top:20px; position: relative;}
 
 /* BOTÃO WHATSAPP REDUZIDO */
-.btn-whatsapp{background:#25d366;color:#fff;border:none;padding:10px 24px;border-radius:999px;font-weight:800;cursor:pointer;font-size:14px;box-shadow:0 4px 8px rgba(37,211,102,0.2)}
+.btn-whatsapp{background:#25d366;color:#fff;border:none;padding:10px 20px;border-radius:999px;font-weight:800;cursor:pointer;font-size:13px;box-shadow:0 4px 8px rgba(37,211,102,0.2)}
 
 .acessorio-row{display:flex;gap:8px;margin-bottom:8px;align-items:center}
 .btn-plus{background:var(--claro-red);color:#fff;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-weight:bold}
@@ -128,7 +130,13 @@ input, select, textarea{padding:10px;border:1px solid var(--border);border-radiu
                 </div>
                 <div class="field"><label>Parcelamento</label>
                     <select id="parcelasSel">
-                        <option value="2">2x</option><option value="21" selected>21x</option>
+                        <option value="2">2x</option><option value="3">3x</option><option value="4">4x</option>
+                        <option value="5">5x</option><option value="6">6x</option><option value="7">7x</option>
+                        <option value="8">8x</option><option value="9">9x</option><option value="10">10x</option>
+                        <option value="11">11x</option><option value="12">12x</option><option value="13">13x</option>
+                        <option value="14">14x</option><option value="15">15x</option><option value="16">16x</option>
+                        <option value="17">17x</option><option value="18">18x</option><option value="19">19x</option>
+                        <option value="20">20x</option><option value="21" selected>21x</option>
                     </select>
                 </div>
             </div>
@@ -201,7 +209,7 @@ function trackGlobalHits() {
 
 function addAcessorio() {
     const div = document.createElement("div"); div.className = "acessorio-row";
-    div.innerHTML = `<input type="text" placeholder="Acessório" class="ace-nome"><input type="number" placeholder="Ex.: 100,00" class="ace-preco" style="width:110px" oninput="recalc()"><button class="btn-plus" style="background:#64748b" onclick="this.parentElement.remove(); recalc()">-</button>`;
+    div.innerHTML = `<input type="text" placeholder="Nome do acessório" class="ace-nome"><input type="number" placeholder="Ex.: 100,00" class="ace-preco" style="width:110px" oninput="recalc()"><button class="btn-plus" style="background:#64748b" onclick="this.parentElement.remove(); recalc()">-</button>`;
     $("acessoriosContainer").appendChild(div);
 }
 
@@ -209,7 +217,7 @@ function limparTudo() {
     document.querySelectorAll("input, textarea").forEach(el => el.value = "");
     document.querySelectorAll("select").forEach(el => el.selectedIndex = 0);
     $("parcelasSel").value = "21";
-    $("acessoriosContainer").innerHTML = `<div class="acessorio-row"><input type="text" placeholder="Acessório" class="ace-nome"><input type="number" placeholder="Ex.: 100,00" class="ace-preco" style="width:110px" oninput="recalc()"><button class="btn-plus" onclick="addAcessorio()">+</button></div>`;
+    $("acessoriosContainer").innerHTML = `<div class="acessorio-row"><input type="text" placeholder="Nome do acessório" class="ace-nome"><input type="number" placeholder="Ex.: 100,00" class="ace-preco" style="width:110px" oninput="recalc()"><button class="btn-plus" onclick="addAcessorio()">+</button></div>`;
     recalc();
 }
 
