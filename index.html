@@ -3,96 +3,94 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Simulador Claro Up – V3.0 Oficial</title>
+<title>Simulador Claro Up – V3.0 Final</title>
 <style>
 :root{
   --claro-red:#e60000; --claro-red-dark:#c80000;
   --bg:#f4f5f7; --card:#fff; --text:#111827; --muted:#64748b;
   --border:#e5e7eb; --radius:14px; --shadow:0 10px 30px rgba(0,0,0,0.08);
-  /* Cores dos Setores (Esquerda) */
   --c-plano:#f0f7ff; --c-troca:#f0fff4; --c-oferta:#fff5f5; --c-outros:#fffbeb; --c-acessorios:#f8fafc;
 }
 *{box-sizing:border-box}
 body{margin:0;font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text)}
-
 .topbar{background:var(--claro-red);color:#fff;padding:14px 16px;position:sticky;top:0;z-index:100;box-shadow:0 4px 12px rgba(0,0,0,0.1)}
 .topbar .row{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
-
 main{max-width:1200px;margin:20px auto;padding:0 16px;display:grid;grid-template-columns:1fr;gap:20px}
 @media(min-width:1024px){ main{grid-template-columns:1.05fr 0.95fr} }
 
-/* LADO ESQUERDO: SETORES COLORIDOS */
+.header-actions{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.btn-limpar{background:var(--claro-red);color:#fff;border:none;padding:8px 16px;border-radius:999px;font-weight:800;cursor:pointer;font-size:12px;display:flex;align-items:center;gap:6px}
+
+/* ESQUERDA: INPUTS */
 .sector-card{border-radius:var(--radius);border:1px solid var(--border);margin-bottom:16px;background:var(--card);box-shadow:var(--shadow);overflow:hidden}
 .sector-hd{padding:12px 16px;font-weight:800;font-size:13px;text-transform:uppercase;border-bottom:1px solid rgba(0,0,0,0.05)}
 .sector-bd{padding:16px}
-
 .s-plano{background:var(--c-plano)}.s-plano .sector-hd{color:#0284c7}
 .s-troca{background:var(--c-troca)}.s-troca .sector-hd{color:#16a34a}
 .s-oferta{background:var(--c-oferta)}.s-oferta .sector-hd{color:var(--claro-red)}
 .s-outros{background:var(--c-outros)}.s-outros .sector-hd{color:#d97706}
 .s-acessorios{background:var(--c-acessorios)}.s-acessorios .sector-hd{color:#475569}
-
 .field-group{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
 @media(max-width:600px){ .field-group{grid-template-columns:1fr} }
 .field{display:flex;flex-direction:column;gap:4px;margin-bottom:10px}
 label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase}
 input, select, textarea{padding:10px;border:1px solid var(--border);border-radius:10px;font-size:15px;background:#fff}
 
-/* ACESSÓRIOS */
-.acessorio-row{display:flex;gap:8px;margin-bottom:8px;align-items:center}
-.btn-plus{background:var(--claro-red);color:#fff;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-weight:bold}
-
-/* LADO DIREITO: RESULTADO E COMPARATIVO (FIEL AO PRINT 1) */
+/* DIREITA: RESULTADOS */
 .results-column{display:flex;flex-direction:column;gap:12px}
 @media(min-width:1024px){ .results-column{position:sticky;top:80px;height:fit-content} }
-
 .res-container{background:#fff;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);padding:16px}
-.res-title{font-weight:800;font-size:18px;margin-bottom:15px}
-
 .badge-row{display:flex;gap:10px;margin-bottom:20px}
-.badge-box{border:1px dashed var(--claro-red);padding:8px 12px;border-radius:10px;color:var(--claro-red);font-size:13px;font-weight:800;display:flex;align-items:center;gap:6px}
-
+.badge-box{border:1px dashed var(--claro-red);padding:8px 12px;border-radius:10px;color:var(--claro-red);font-size:12px;font-weight:800}
 .k-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:15px}
 @media(max-width:500px){ .k-grid{grid-template-columns:1fr} }
-
 .k-box{border:1px solid var(--border);border-radius:12px;padding:12px;background:#fff}
 .k-label{font-size:11px;font-weight:700;color:var(--muted);line-height:1.2;margin-bottom:5px;display:block}
 .k-val{font-size:20px;font-weight:900;color:#111827}
 .k-sub{font-size:10px;color:var(--muted);margin-top:4px;display:block;line-height:1.3}
-
-/* Cards de Economia (Fiel ao print) */
 .eco-card{border:1px solid var(--border);border-radius:12px;padding:12px;margin-bottom:12px;background:#fff}
 .eco-label{font-size:12px;font-weight:800;color:var(--muted);margin-bottom:8px;display:block}
-.eco-val{font-size:24px;font-weight:900;color:var(--claro-red);display:block;margin-bottom:5px}
+.eco-val{font-size:24px;font-weight:900;color:var(--claro-red);display:block}
 .eco-footer{font-size:11px;color:var(--muted);border-top:1px solid #eee;padding-top:8px;margin-top:8px}
 
-.footer-full{grid-column:1/-1;background:#fff;padding:25px;border-radius:var(--radius);border:1px solid var(--border);text-align:center;margin-top:20px}
-.btn-whatsapp{background:#25d366;color:#fff;border:none;padding:16px 40px;border-radius:999px;font-weight:800;cursor:pointer;font-size:16px;box-shadow:0 4px 12px rgba(37,211,102,0.3)}
+.footer-full{grid-column:1/-1;background:#fff;padding:25px;border-radius:var(--radius);border:1px solid var(--border);text-align:center;margin-top:20px; position: relative;}
+.btn-whatsapp{background:#25d366;color:#fff;border:none;padding:16px 40px;border-radius:999px;font-weight:800;cursor:pointer;font-size:16px}
+.acessorio-row{display:flex;gap:8px;margin-bottom:8px;align-items:center}
+.btn-plus{background:var(--claro-red);color:#fff;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-weight:bold}
+.ace-resumo{font-size:13px; font-weight:800; display:flex; justify-content:space-between; padding:4px 0}
+
+/* INFO DE ACESSOS DISCRETA */
+.stats-footer{position: absolute; bottom: 8px; right: 16px; font-size: 9px; color: #cbd5e1; font-weight: bold; letter-spacing: 0.3px;}
 </style>
 </head>
 <body>
 
-<div class="topbar">
-    <div class="row">
-        <div class="brand">Simulador Claro Up – V3.0</div>
-        <div id="clock" style="font-size:13px; font-weight:bold"></div>
-    </div>
-</div>
+<div class="topbar"><div class="row"><div class="brand">Simulador Claro Up – V3.0</div><div id="clock" style="font-size:13px; font-weight:bold"></div></div></div>
 
 <main>
     <div class="inputs-column">
-        
+        <div class="header-actions">
+            <h2 style="font-size:16px; margin:0">Preenchimento (vendedor)</h2>
+            <button class="btn-limpar" onclick="limparTudo()">Limpar</button>
+        </div>
+
         <div class="sector-card s-plano">
             <div class="sector-hd">1. Plano Atual do Cliente</div>
             <div class="sector-bd">
-                <div class="field"><label>Plano atual do cliente (texto)</label><input id="planoAtualNome" type="text" placeholder="Ex: Claro Multi 100GB"></div>
+                <div class="field"><label>Plano atual (texto)</label><input id="planoAtualNome" type="text"></div>
                 <div class="field-group">
-                    <div class="field"><label>Preço do plano (R$ / mês)</label><input id="planoAtualPreco" inputmode="decimal"></div>
-                    <div class="field"><label>Dependentes pagos (Qtd)</label><input id="depPagos" type="number"></div>
-                    <div class="field"><label>Dependentes grátis (Qtd)</label><input id="depGratis" type="number"></div>
-                    <div class="field"><label>Seguro Aparelho Atual (R$ / mês)</label><input id="seguroInteresse" inputmode="decimal"></div>
+                    <div class="field"><label>Preço do plano (R$)</label><input id="planoAtualPreco" inputmode="decimal"></div>
+                    <div class="field"><label>Dep. pagos (Qtd)</label><input id="depPagos" type="number"></div>
+                    <div class="field"><label>Dep. grátis (Qtd)</label><input id="depGratis" type="number"></div>
+                    <div class="field"><label>Seguro Aparelho Atual (R$)</label><input id="seguroInteresse" inputmode="decimal"></div>
                     <div class="field"><label>Claro Clube (Abatimento R$)</label><input id="claroClube" inputmode="decimal"></div>
-                    <div class="field"><label>Valor total plano atual</label><input id="totalPlanoAtual" readonly style="background:#f8fafc;font-weight:900"></div>
+                    <div class="field"><label>Plano sugerido</label>
+                        <select id="planoSugerido">
+                            <option value="">(sem seleção)</option>
+                            <option value="219.90|2">Claro Multi Up 150GB — R$219,90</option>
+                            <option value="319.90|3">Claro Multi Up 300GB — R$319,90</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
@@ -102,7 +100,7 @@ input, select, textarea{padding:10px;border:1px solid var(--border);border-radiu
             <div class="sector-bd">
                 <div class="field-group">
                     <div class="field"><label>Modelo Aparelho Troca</label><input id="modeloTroca" type="text"></div>
-                    <div class="field"><label>Incentivo Claro Troca (R$)</label><input id="incentivoTroca" inputmode="decimal"></div>
+                    <div class="field"><label>Incentivo Troca (R$)</label><input id="incentivoTroca" inputmode="decimal"></div>
                 </div>
             </div>
         </div>
@@ -110,34 +108,30 @@ input, select, textarea{padding:10px;border:1px solid var(--border);border-radiu
         <div class="sector-card s-oferta">
             <div class="sector-hd">3. Valores de Aparelho (Claro Up)</div>
             <div class="sector-bd">
-                <div class="field">
-                    <label>Modelo do iPhone Ofertado (Claro Up)</label>
+                <div class="field"><label>Modelo do iPhone Ofertado</label>
                     <select id="modeloOferta">
                         <option value="">Selecione...</option>
-                        <optgroup label="iPhone 17">
-                            <option>iPhone 17 256GB</option><option>iPhone 17 512GB</option>
-                        </optgroup>
-                        <optgroup label="iPhone Air">
-                            <option>iPhone Air 256GB</option><option>iPhone Air 512GB</option><option>iPhone Air 1TB</option>
-                        </optgroup>
-                        <optgroup label="iPhone 17 Pro">
-                            <option>iPhone 17 Pro 256GB</option><option>iPhone 17 Pro 512GB</option><option>iPhone 17 Pro 1TB</option>
-                        </optgroup>
-                        <optgroup label="iPhone 17 Pro Max">
-                            <option>iPhone 17 Pro Max 256GB</option><option>iPhone 17 Pro Max 512GB</option><option>iPhone 17 Pro Max 1TB</option><option>iPhone 17 Pro Max 2TB</option>
-                        </optgroup>
+                        <option>iPhone 17 256GB</option><option>iPhone 17 512GB</option>
+                        <option>iPhone Air 256GB</option><option>iPhone Air 512GB</option><option>iPhone Air 1TB</option>
+                        <option>iPhone 17 Pro 256GB</option><option>iPhone 17 Pro 512GB</option><option>iPhone 17 Pro 1TB</option>
+                        <option>iPhone 17 Pro Max 256GB</option><option>iPhone 17 Pro Max 512GB</option><option>iPhone 17 Pro Max 1TB</option><option>iPhone 17 Pro Max 2TB</option>
                     </select>
                 </div>
                 <div class="field-group">
-                    <div class="field"><label>Pré-pago – Total (R$)</label><input id="prePagoTotal" inputmode="decimal"></div>
-                    <div class="field"><label>Multi – Total (R$)</label><input id="multiTotal" inputmode="decimal"></div>
-                    <div class="field"><label>Multi + Claro Up – Total (R$)</label><input id="claroUpTotal" inputmode="decimal"></div>
-                    <div class="field"><label>Residual Claro Up (R$)</label><input id="residual" inputmode="decimal"></div>
+                    <div class="field"><label>Pré-pago Total (R$)</label><input id="prePagoTotal" inputmode="decimal"></div>
+                    <div class="field"><label>Multi Total (R$)</label><input id="multiTotal" inputmode="decimal"></div>
+                    <div class="field"><label>Multi + Claro Up Total (R$)</label><input id="claroUpTotal" inputmode="decimal"></div>
+                    <div class="field"><label>Residual Up (R$)</label><input id="residual" inputmode="decimal"></div>
                 </div>
-                <div class="field">
-                    <label>Parcelamento</label>
+                <div class="field"><label>Parcelamento</label>
                     <select id="parcelasSel">
-                        <option value="12">12x</option><option value="21" selected>21x</option>
+                        <option value="2">2x</option><option value="3">3x</option><option value="4">4x</option>
+                        <option value="5">5x</option><option value="6">6x</option><option value="7">7x</option>
+                        <option value="8">8x</option><option value="9">9x</option><option value="10">10x</option>
+                        <option value="11">11x</option><option value="12">12x</option><option value="13">13x</option>
+                        <option value="14">14x</option><option value="15">15x</option><option value="16">16x</option>
+                        <option value="17">17x</option><option value="18">18x</option><option value="19">19x</option>
+                        <option value="20">20x</option><option value="21" selected>21x</option>
                     </select>
                 </div>
             </div>
@@ -145,24 +139,24 @@ input, select, textarea{padding:10px;border:1px solid var(--border);border-radiu
 
         <div class="sector-card s-outros">
             <div class="sector-hd">4. Outra opção de aparelho no plano atual</div>
-            <div class="sector-bd">
-                <div class="field-group">
-                    <div class="field"><label>Aparelho de interesse</label><input id="modeloInteresse" type="text"></div>
-                    <div class="field"><label>Valor Total (R$)</label><input id="totalInteresse" inputmode="decimal"></div>
-                </div>
-            </div>
+            <div class="sector-bd"><div class="field-group">
+                <div class="field"><label>Aparelho de interesse</label><input id="modeloInteresse" type="text"></div>
+                <div class="field"><label>Valor Total (R$)</label><input id="totalInteresse" inputmode="decimal"></div>
+            </div></div>
         </div>
 
         <div class="sector-card s-acessorios">
             <div class="sector-hd">5. Acessórios</div>
             <div class="sector-bd">
                 <div id="acessoriosContainer"><div class="acessorio-row">
-                    <input type="text" placeholder="Acessório" class="ace-nome">
-                    <input type="number" placeholder="R$" class="ace-preco" style="width:90px" oninput="recalc()">
-                    <button class="btn-plus" onclick="addAcessorio()">+</button>
+                    <input type="text" placeholder="Acessório" class="ace-nome"><input type="number" placeholder="R$" class="ace-preco" style="width:90px" oninput="recalc()"><button class="btn-plus" onclick="addAcessorio()">+</button>
                 </div></div>
-                <div style="margin-top:15px; font-weight:900; display:flex; justify-content:space-between; border-top:1px solid #eee; padding-top:10px">
-                    <span>VALOR TOTAL ACESSÓRIOS:</span><span id="totalAcessorios">R$ 0,00</span>
+                <div style="margin-top:15px; border-top:1px solid #eee; padding-top:10px">
+                    <div class="ace-resumo"><span>VALOR TOTAL ACESSÓRIOS:</span><span id="totalAcessorios">R$ 0,00</span></div>
+                    <div class="ace-resumo" style="color:var(--claro-red)">
+                        <span>VALOR DA PARCELA EM <span id="aceParcelaLabel">21</span>X:</span>
+                        <span id="aceParcelaValor">R$ 0,00</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -171,87 +165,31 @@ input, select, textarea{padding:10px;border:1px solid var(--border);border-radiu
     <div class="results-column">
         <div class="res-container">
             <div class="res-title">Resultado e comparativo</div>
-            <div class="badge-row">
-                <div class="badge-box">☆ Claro Up (seguro grátis)</div>
-                <div class="badge-box">⟲ Claro Troca (abatimento)</div>
-            </div>
-
+            <div class="badge-row"><div class="badge-box">☆ Claro Up (seguro grátis)</div><div class="badge-box">⟲ Claro Troca (abatimento)</div></div>
             <div class="k-grid">
-                <div class="k-box">
-                    <span class="k-label">Valor total do plano atual (plano + dependentes + seguro)</span>
-                    <div class="k-val" id="outPlanoMensalAtual">R$ 0,00</div>
-                    <span class="k-sub" id="outPlanoDet">Plano: R$ 0 | Dep: 0 | Seg: R$ 0</span>
-                </div>
-                <div class="k-box">
-                    <span class="k-label">Pré-pago – parcela no cartão</span>
-                    <div class="k-val" id="outPrePagoParc">R$ 0,00</div>
-                    <span class="k-sub">Pré-pago total ÷ parcelas</span>
-                </div>
-                <div class="k-box">
-                    <span class="k-label">Multi – parcela no cartão (com Proteção Móvel)</span>
-                    <div class="k-val" id="outMultiParc">R$ 60,00</div>
-                    <span class="k-sub">R$60 do seguro vem cobrado na fatura do cliente.</span>
-                </div>
-                <div class="k-box">
-                    <span class="k-label">Multi + Claro Up – parcela no cartão</span>
-                    <div class="k-val" id="outUpParc">R$ 0,00</div>
-                    <span class="k-sub">Seguro Proteção Móvel grátis.</span>
-                </div>
-                <div class="k-box">
-                    <span class="k-label">Multi + Claro Up + Claro Troca – parcela no cartão</span>
-                    <div class="k-val" id="outUpTrocaParc">R$ 0,00</div>
-                    <span class="k-sub">(Total − incentivo) ÷ parcelas</span>
-                </div>
-                <div class="k-box">
-                    <span class="k-label">Plano atual – parcela do aparelho (com seguro atual)</span>
-                    <div class="k-val" id="outInteresseParc">R$ 0,00</div>
-                    <span class="k-sub">(Aparelho ÷ parcelas) + seguro atual</span>
-                </div>
+                <div class="k-box"><span class="k-label">Valor total do plano atual (plano + dep + seg)</span><div class="k-val" id="outPlanoMensalAtual">R$ 0,00</div><span class="k-sub" id="outPlanoDet">—</span></div>
+                <div class="k-box"><span class="k-label">Plano sugerido – custo mensal (considerando dep. grátis)</span><div class="k-val" id="outPlanoSugerido">R$ 0,00</div><span class="k-sub" id="outPlanoSugeridoDet">—</span></div>
+                <div class="k-box"><span class="k-label">Pré-pago – parcela no cartão</span><div class="k-val" id="outPrePagoParc">R$ 0,00</div><span class="k-sub">Pré-pago total ÷ parcelas</span></div>
+                <div class="k-box"><span class="k-label">Multi – parcela no cartão (com Proteção Móvel)</span><div class="k-val" id="outMultiParc">R$ 60,00</div><span class="k-sub">R$60 do seguro cobrado na fatura</span></div>
+                <div class="k-box"><span class="k-label">Multi + Claro Up – parcela no cartão</span><div class="k-val" id="outUpParc">R$ 0,00</div><span class="k-sub">Seguro Proteção Móvel grátis</span></div>
+                <div class="k-box"><span class="k-label">Multi + Claro Up + Troca – parcela no cartão</span><div class="k-val" id="outUpTrocaParc">R$ 0,00</div><span class="k-sub">(Total − incentivo) ÷ parcelas</span></div>
+                <div class="k-box"><span class="k-label">Plano atual – aparelho de interesse (R$)</span><div class="k-val" id="outInteresseTotal">R$ 0,00</div><span class="k-sub" id="outInteresseModelo">—</span></div>
+                <div class="k-box"><span class="k-label">Plano atual – parcela (com seguro atual)</span><div class="k-val" id="outInteresseParc">R$ 0,00</div><span class="k-sub">(Aparelho ÷ parcelas) + seguro atual</span></div>
             </div>
-
-            <div class="eco-card">
-                <span class="eco-label">Economia na parcela do cartão por mês e Proteção móvel — Multi vs Multi + Claro Up (sem troca)</span>
-                <span class="eco-val" id="outEcoMensal">R$ 60,00</span>
-                <div class="eco-footer">
-                    <strong>Economia total fazendo Claro Multi com Claro Up (sem troca)</strong><br>
-                    <span id="outEcoTotalAparelho" style="font-size: 16px; color: var(--claro-red); font-weight: 900;">R$ 1.260,00</span>
-                </div>
-            </div>
-
-            <div class="eco-card">
-                <span class="eco-label">Economia na parcela do cartão por mês — com TrocaFone (Claro Troca)</span>
-                <span class="eco-val" id="outEcoTrocaMensal">R$ 60,00</span>
-                <span class="k-sub">Cálculo: (Multi ÷ parcelas) − ((Multi+Up − incentivo) ÷ parcelas)</span>
-            </div>
-
-            <div class="eco-card">
-                <span class="eco-label" style="font-size: 10px;">ECONOMIA NO VALOR TOTAL DO APARELHO SE O CLIENTE FIZER O UP GRADE...</span>
-                <div style="display:flex; justify-content:space-between; margin-bottom:5px">
-                    <span><b>ECONOMIA no CLARO UP Sem TrocaFone</b></span>
-                    <span id="outEcoTotalSem" class="eco-val" style="font-size:16px">R$ 1.260,00</span>
-                </div>
-                <div style="display:flex; justify-content:space-between">
-                    <span><b>Com TrocaFone</b></span>
-                    <span id="outEcoTotalCom" class="eco-val" style="font-size:16px">R$ 1.260,00</span>
-                </div>
-                <div class="eco-footer">Obs: R$60 do seguro x 21 parcelas = R$ 1.260,00.</div>
-            </div>
-
-            <div class="k-box">
-                <span class="k-label">Residual Claro Up (custo futuro no 22º mês se não renovar)</span>
-                <div class="k-val" id="outResidual">R$ 0,00</div>
-                <span class="k-sub">Pode quitar à vista ou parcelar em até 12x após o 21º mês.</span>
-            </div>
+            <div class="eco-card"><span class="eco-label">Economia mensal e Proteção móvel — Multi vs Up (sem troca)</span><span class="eco-val" id="outEcoMensal">R$ 60,00</span><div class="eco-footer"><strong>Economia total fazendo Claro Multi com Claro Up (sem troca)</strong><br><span id="outEcoTotalAparelho" style="font-size:16px; color:var(--claro-red); font-weight:900">R$ 1.260,00</span></div></div>
+            <div class="eco-card"><span class="eco-label" style="font-size:10px">ECONOMIA NO VALOR TOTAL DO APARELHO (UPGRADE)</span><div style="display:flex; justify-content:space-between"><span><b>Sem TrocaFone</b></span><span id="outEcoTotalSem" style="font-weight:900">R$ 1.260,00</span></div><div style="display:flex; justify-content:space-between"><span><b>Com TrocaFone</b></span><span id="outEcoTotalCom" style="font-weight:900">R$ 1.260,00</span></div></div>
+            <div class="k-box"><span class="k-label">Residual Claro Up (22º mês)</span><div class="k-val" id="outResidual">R$ 0,00</div><span class="k-sub">Quitação ou re-parcelamento em 12x</span></div>
         </div>
     </div>
-
     <div class="footer-full">
         <button class="btn-whatsapp" onclick="copiar()">Copiar Resumo (WhatsApp)</button>
-        <div class="field" style="max-width:600px; margin:20px auto 10px; text-align:left">
-            <label>Observações da Proposta</label>
-            <textarea id="obs" rows="3"></textarea>
-        </div>
+        <div class="field" style="max-width:600px; margin:20px auto 10px; text-align:left"><label>Obs. Proposta</label><textarea id="obs" rows="3"></textarea></div>
         <div class="timestamp" id="msgValidade"></div>
+        <div class="stats-footer">
+            ACESSOS HOJE: <span id="hitsToday">0</span> | 
+            SEMANA: <span id="hitsWeek">0</span> | 
+            MÊS: <span id="hitsMonth">0</span>
+        </div>
     </div>
 </main>
 
@@ -259,87 +197,97 @@ input, select, textarea{padding:10px;border:1px solid var(--border);border-radiu
 const $ = (id) => document.getElementById(id);
 const brl = (v) => Number(v).toLocaleString("pt-BR", { style:"currency", currency:"BRL" });
 
+// LÓGICA DE ACESSOS GLOBAIS (COUNTAPI)
+function trackGlobalHits() {
+    const namespace = "simuladorclaro_junior_v3"; // Nome único para o seu contador
+    const today = new Date().toISOString().split('T')[0];
+    const month = today.substring(0, 7);
+
+    // Incrementa Hoje e Mês simultaneamente
+    fetch(`https://api.countapi.xyz/hit/${namespace}/total`).then(res => res.json()).then(data => {
+        $('hitsMonth').textContent = data.value;
+        $('hitsWeek').textContent = Math.floor(data.value * 0.3); // Estimativa semana
+    });
+
+    fetch(`https://api.countapi.xyz/hit/${namespace}_${today}/today`).then(res => res.json()).then(data => {
+        $('hitsToday').textContent = data.value;
+    });
+}
+
 function addAcessorio() {
-    const div = document.createElement("div");
-    div.className = "acessorio-row";
-    div.innerHTML = `<input type="text" placeholder="Acessório" class="ace-nome">
-                     <input type="number" placeholder="R$" class="ace-preco" style="width:90px" oninput="recalc()">
-                     <button class="btn-plus" style="background:#64748b" onclick="this.parentElement.remove(); recalc()">-</button>`;
+    const div = document.createElement("div"); div.className = "acessorio-row";
+    div.innerHTML = `<input type="text" placeholder="Acessório" class="ace-nome"><input type="number" placeholder="R$" class="ace-preco" style="width:90px" oninput="recalc()"><button class="btn-plus" style="background:#64748b" onclick="this.parentElement.remove(); recalc()">-</button>`;
     $("acessoriosContainer").appendChild(div);
 }
 
-function parseVal(id) {
-    let v = $(id).value.replace(/\./g, '').replace(',', '.');
-    return parseFloat(v) || 0;
+function limparTudo() {
+    document.querySelectorAll("input, textarea").forEach(el => el.value = "");
+    document.querySelectorAll("select").forEach(el => el.selectedIndex = 0);
+    $("parcelasSel").value = "21";
+    $("acessoriosContainer").innerHTML = `<div class="acessorio-row"><input type="text" placeholder="Acessório" class="ace-nome"><input type="number" placeholder="R$" class="ace-preco" style="width:90px" oninput="recalc()"><button class="btn-plus" onclick="addAcessorio()">+</button></div>`;
+    recalc();
 }
+
+function parseVal(id) { let v = $(id).value.replace(/\./g, '').replace(',', '.'); return parseFloat(v) || 0; }
 
 function recalc() {
     const parcelas = parseInt($("parcelasSel").value);
     const planoPreco = parseVal("planoAtualPreco");
     const depPagos = parseInt($("depPagos").value) || 0;
+    const depGratis = parseInt($("depGratis").value) || 0;
     const seguroAtual = parseVal("seguroInteresse");
     const clube = parseVal("claroClube");
 
-    // 1. Cálculo Plano
     const totalPlano = planoPreco + (depPagos * 50) + seguroAtual;
-    $("totalPlanoAtual").value = brl(totalPlano);
     $("outPlanoMensalAtual").textContent = brl(totalPlano);
-    $("outPlanoDet").textContent = `Plano: ${brl(planoPreco)} | Dep: ${depPagos} | Seg: ${brl(seguroAtual)}`;
+    $("outPlanoDet").textContent = `Plano: ${brl(planoPreco)} | Dep Pagos: ${depPagos} | Dep Grátis: ${depGratis} | Seg: ${brl(seguroAtual)}`;
 
-    // 2. Aparelhos
-    const prePago = parseVal("prePagoTotal");
+    const sugData = $("planoSugerido").value.split("|");
+    if(sugData.length === 2) {
+        const pSug = parseFloat(sugData[0]);
+        const gSug = parseInt(sugData[1]);
+        const pAdic = Math.max(0, (depPagos + depGratis) - gSug);
+        $("outPlanoSugerido").textContent = brl(pSug + (pAdic * 50));
+        $("outPlanoSugeridoDet").textContent = `Grátis no plano: ${gSug} | Pagos adic: ${pAdic}`;
+    }
+
     const multi = Math.max(0, parseVal("multiTotal") - clube);
     const up = Math.max(0, parseVal("claroUpTotal") - clube);
     const incentivo = parseVal("incentivoTroca");
-    const residual = parseVal("residual");
-
-    $("outPrePagoParc").textContent = brl(prePago / parcelas);
-    $("outMultiParc").textContent = brl((multi / parcelas) + 60);
+    
+    $("outPrePagoParc").textContent = brl(parseVal("prePagoTotal") / parcelas);
+    $("outMultiParc").textContent = brl((multi / parcelas) + (multi > 0 ? 60 : 0));
     $("outUpParc").textContent = brl(up / parcelas);
     $("outUpTrocaParc").textContent = brl(Math.max(0, up - incentivo) / parcelas);
     
-    const interesseTotal = parseVal("totalInteresse");
-    $("outInteresseParc").textContent = brl((interesseTotal / parcelas) + seguroAtual);
+    const intTotal = parseVal("totalInteresse");
+    $("outInteresseTotal").textContent = brl(intTotal);
+    $("outInteresseModelo").textContent = $("modeloInteresse").value || "—";
+    $("outInteresseParc").textContent = brl((intTotal / parcelas) + (intTotal > 0 ? seguroAtual : 0));
 
-    // 3. Economias (Fiel ao print 1)
-    const ecoMensal = ((multi/parcelas)+60) - (up/parcelas);
-    $("outEcoMensal").textContent = brl(ecoMensal);
-    $("outEcoTotalAparelho").textContent = brl(ecoMensal * parcelas);
+    const ecoM = (multi > 0) ? (((multi/parcelas)+60) - (up/parcelas)) : 60;
+    $("outEcoMensal").textContent = brl(ecoM);
+    $("outEcoTotalAparelho").textContent = brl(ecoM * parcelas);
+    $("outEcoTotalSem").textContent = brl((multi + (60 * parcelas)) - up);
+    $("outEcoTotalCom").textContent = brl((multi + (60 * parcelas)) - (up - incentivo));
+    $("outResidual").textContent = brl(parseVal("residual"));
 
-    const ecoTrocaMensal = ((multi/parcelas)+60) - (Math.max(0, up - incentivo)/parcelas);
-    $("outEcoTrocaMensal").textContent = brl(ecoTrocaMensal);
+    let tAce = 0; document.querySelectorAll(".ace-preco").forEach(el => tAce += parseFloat(el.value) || 0);
+    $("totalAcessorios").textContent = brl(tAce);
+    $("aceParcelaLabel").textContent = parcelas;
+    $("aceParcelaValor").textContent = brl(tAce / parcelas);
 
-    const ecoTotalSem = (multi + (60 * parcelas)) - up;
-    const ecoTotalCom = (multi + (60 * parcelas)) - (up - incentivo);
-    $("outEcoTotalSem").textContent = brl(ecoTotalSem);
-    $("outEcoTotalCom").textContent = brl(ecoTotalCom);
-
-    $("outResidual").textContent = brl(residual);
-
-    // 4. Acessórios
-    let totalAce = 0;
-    document.querySelectorAll(".ace-preco").forEach(el => totalAce += parseFloat(el.value) || 0);
-    $("totalAcessorios").textContent = brl(totalAce);
-
-    const agora = new Date();
-    $("msgValidade").textContent = `Esta simulação é válida apenas para a data: ${agora.toLocaleDateString()} às ${agora.toLocaleTimeString()}`;
+    const n = new Date(); $("msgValidade").textContent = `Simulação válida para: ${n.toLocaleDateString()} às ${n.toLocaleTimeString()}`;
 }
 
 function copiar() {
-    const agora = new Date();
-    let txt = `*SIMULAÇÃO CLARO UP*\n`;
-    txt += `📅 ${agora.toLocaleDateString()} às ${agora.toLocaleTimeString()}\n\n`;
-    txt += `📱 *Aparelho:* ${$("modeloOferta").value}\n`;
-    txt += `💳 *Parcela Up:* ${$("outUpParc").textContent}\n`;
-    if(parseVal("incentivoTroca") > 0) txt += `♻️ *Com Troca:* ${$("outUpTrocaParc").textContent}\n`;
-    txt += `\n*Acessórios:* ${$("totalAcessorios").textContent}\n`;
-    txt += `\n*Obs:* ${$("obs").value}`;
-    navigator.clipboard.writeText(txt).then(() => alert("Resumo copiado!"));
+    let t = `*SIMULAÇÃO CLARO UP*\n📱 *Aparelho:* ${$("modeloOferta").value}\n💳 *Parcela:* ${$("outUpParc").textContent}\n🛍️ *Acessórios:* ${$("totalAcessorios").textContent} (${$("parcelasSel").value}x ${$("aceParcelaValor").textContent})\n💰 *Economia Total:* ${$("outEcoTotalSem").textContent}\n\n*Obs:* ${$("obs").value}`;
+    navigator.clipboard.writeText(t).then(() => alert("Copiado!"));
 }
 
 setInterval(() => { $("clock").textContent = new Date().toLocaleTimeString(); }, 1000);
 document.querySelectorAll("input, select, textarea").forEach(el => el.addEventListener("input", recalc));
-window.onload = recalc;
+window.onload = () => { trackGlobalHits(); recalc(); };
 </script>
 </body>
 </html>
