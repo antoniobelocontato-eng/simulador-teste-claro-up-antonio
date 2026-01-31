@@ -58,8 +58,6 @@ input, select, textarea{padding:10px;border:1px solid var(--border);border-radiu
 .acessorio-row{display:flex;gap:8px;margin-bottom:8px;align-items:center}
 .btn-plus{background:var(--claro-red);color:#fff;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-weight:bold}
 .ace-resumo{font-size:13px; font-weight:800; display:flex; justify-content:space-between; padding:4px 0}
-
-/* INFO DE ACESSOS DISCRETA */
 .stats-footer{position: absolute; bottom: 8px; right: 16px; font-size: 9px; color: #cbd5e1; font-weight: bold; letter-spacing: 0.3px;}
 </style>
 </head>
@@ -77,13 +75,13 @@ input, select, textarea{padding:10px;border:1px solid var(--border);border-radiu
         <div class="sector-card s-plano">
             <div class="sector-hd">1. Plano Atual do Cliente</div>
             <div class="sector-bd">
-                <div class="field"><label>Plano atual (texto)</label><input id="planoAtualNome" type="text"></div>
+                <div class="field"><label>Plano atual do cliente (texto)</label><input id="planoAtualNome" type="text" placeholder="Ex.: Claro Multi 50GB"></div>
                 <div class="field-group">
-                    <div class="field"><label>Preço do plano (R$)</label><input id="planoAtualPreco" inputmode="decimal"></div>
-                    <div class="field"><label>Dep. pagos (Qtd)</label><input id="depPagos" type="number"></div>
-                    <div class="field"><label>Dep. grátis (Qtd)</label><input id="depGratis" type="number"></div>
-                    <div class="field"><label>Seguro Aparelho Atual (R$)</label><input id="seguroInteresse" inputmode="decimal"></div>
-                    <div class="field"><label>Claro Clube (Abatimento R$)</label><input id="claroClube" inputmode="decimal"></div>
+                    <div class="field"><label>Preço do plano (R$ / mês)</label><input id="planoAtualPreco" inputmode="decimal" placeholder="Ex.: 149,90"></div>
+                    <div class="field"><label>Dependentes pagos – quantidade</label><input id="depPagos" type="number" placeholder="Ex.: 1"></div>
+                    <div class="field"><label>Dependentes grátis – quantidade</label><input id="depGratis" type="number" placeholder="Ex.: 2"></div>
+                    <div class="field"><label>Seguro do aparelho de interesse (R$ / mês)</label><input id="seguroInteresse" inputmode="decimal" placeholder="Ex.: 60,00"></div>
+                    <div class="field"><label>Claro Clube (abatimento) (R$)</label><input id="claroClube" inputmode="decimal" placeholder="Ex.: 200,00"></div>
                     <div class="field"><label>Plano sugerido</label>
                         <select id="planoSugerido">
                             <option value="">(sem seleção)</option>
@@ -99,8 +97,8 @@ input, select, textarea{padding:10px;border:1px solid var(--border);border-radiu
             <div class="sector-hd">2. Troca Fone</div>
             <div class="sector-bd">
                 <div class="field-group">
-                    <div class="field"><label>Modelo Aparelho Troca</label><input id="modeloTroca" type="text"></div>
-                    <div class="field"><label>Incentivo Troca (R$)</label><input id="incentivoTroca" inputmode="decimal"></div>
+                    <div class="field"><label>Modelo do aparelho da troca (Claro Troca)</label><input id="modeloTroca" type="text" placeholder="Ex.: iPhone 13 128GB"></div>
+                    <div class="field"><label>Incentivo Claro Troca (abatimento) (R$)</label><input id="incentivoTroca" inputmode="decimal" placeholder="Ex.: 700,00"></div>
                 </div>
             </div>
         </div>
@@ -108,7 +106,7 @@ input, select, textarea{padding:10px;border:1px solid var(--border);border-radiu
         <div class="sector-card s-oferta">
             <div class="sector-hd">3. Valores de Aparelho (Claro Up)</div>
             <div class="sector-bd">
-                <div class="field"><label>Modelo do iPhone Ofertado</label>
+                <div class="field"><label>Modelo do iPhone ofertado (Claro Up)</label>
                     <select id="modeloOferta">
                         <option value="">Selecione...</option>
                         <option>iPhone 17 256GB</option><option>iPhone 17 512GB</option>
@@ -118,10 +116,10 @@ input, select, textarea{padding:10px;border:1px solid var(--border);border-radiu
                     </select>
                 </div>
                 <div class="field-group">
-                    <div class="field"><label>Pré-pago Total (R$)</label><input id="prePagoTotal" inputmode="decimal"></div>
-                    <div class="field"><label>Multi Total (R$)</label><input id="multiTotal" inputmode="decimal"></div>
-                    <div class="field"><label>Multi + Claro Up Total (R$)</label><input id="claroUpTotal" inputmode="decimal"></div>
-                    <div class="field"><label>Residual Up (R$)</label><input id="residual" inputmode="decimal"></div>
+                    <div class="field"><label>Pré-pago – total do aparelho (R$)</label><input id="prePagoTotal" inputmode="decimal" placeholder="Ex.: 5.999,90"></div>
+                    <div class="field"><label>Multi – total do aparelho (R$)</label><input id="multiTotal" inputmode="decimal" placeholder="Ex.: 5.499,90"></div>
+                    <div class="field"><label>Multi + Claro Up – total do aparelho (R$)</label><input id="claroUpTotal" inputmode="decimal" placeholder="Ex.: 4.999,90"></div>
+                    <div class="field"><label>Residual Claro Up (R$)</label><input id="residual" inputmode="decimal" placeholder="Ex.: 1.800,00"></div>
                 </div>
                 <div class="field"><label>Parcelamento</label>
                     <select id="parcelasSel">
@@ -140,8 +138,8 @@ input, select, textarea{padding:10px;border:1px solid var(--border);border-radiu
         <div class="sector-card s-outros">
             <div class="sector-hd">4. Outra opção de aparelho no plano atual</div>
             <div class="sector-bd"><div class="field-group">
-                <div class="field"><label>Aparelho de interesse</label><input id="modeloInteresse" type="text"></div>
-                <div class="field"><label>Valor Total (R$)</label><input id="totalInteresse" inputmode="decimal"></div>
+                <div class="field"><label>Aparelho de interesse no plano atual (nome)</label><input id="modeloInteresse" type="text" placeholder="Ex.: Samsung S24"></div>
+                <div class="field"><label>Aparelho de interesse no plano atual – total (R$)</label><input id="totalInteresse" inputmode="decimal" placeholder="Ex.: 3.999,90"></div>
             </div></div>
         </div>
 
@@ -149,7 +147,9 @@ input, select, textarea{padding:10px;border:1px solid var(--border);border-radiu
             <div class="sector-hd">5. Acessórios</div>
             <div class="sector-bd">
                 <div id="acessoriosContainer"><div class="acessorio-row">
-                    <input type="text" placeholder="Acessório" class="ace-nome"><input type="number" placeholder="R$" class="ace-preco" style="width:90px" oninput="recalc()"><button class="btn-plus" onclick="addAcessorio()">+</button>
+                    <input type="text" placeholder="Nome do acessório" class="ace-nome">
+                    <input type="number" placeholder="Ex.: 100,00" class="ace-preco" style="width:110px" oninput="recalc()">
+                    <button class="btn-plus" onclick="addAcessorio()">+</button>
                 </div></div>
                 <div style="margin-top:15px; border-top:1px solid #eee; padding-top:10px">
                     <div class="ace-resumo"><span>VALOR TOTAL ACESSÓRIOS:</span><span id="totalAcessorios">R$ 0,00</span></div>
@@ -181,13 +181,13 @@ input, select, textarea{padding:10px;border:1px solid var(--border);border-radiu
             <div class="k-box"><span class="k-label">Residual Claro Up (22º mês)</span><div class="k-val" id="outResidual">R$ 0,00</div><span class="k-sub">Quitação ou re-parcelamento em 12x</span></div>
         </div>
     </div>
+
     <div class="footer-full">
         <button class="btn-whatsapp" onclick="copiar()">Copiar Resumo (WhatsApp)</button>
-        <div class="field" style="max-width:600px; margin:20px auto 10px; text-align:left"><label>Obs. Proposta</label><textarea id="obs" rows="3"></textarea></div>
+        <div class="field" style="max-width:600px; margin:20px auto 10px; text-align:left"><label>Observações da proposta</label><textarea id="obs" placeholder="Ex.: condição especial, prazo, observação do cliente..." rows="3"></textarea></div>
         <div class="timestamp" id="msgValidade"></div>
         <div class="stats-footer">
             ACESSOS HOJE: <span id="hitsToday">0</span> | 
-            SEMANA: <span id="hitsWeek">0</span> | 
             MÊS: <span id="hitsMonth">0</span>
         </div>
     </div>
@@ -197,26 +197,17 @@ input, select, textarea{padding:10px;border:1px solid var(--border);border-radiu
 const $ = (id) => document.getElementById(id);
 const brl = (v) => Number(v).toLocaleString("pt-BR", { style:"currency", currency:"BRL" });
 
-// LÓGICA DE ACESSOS GLOBAIS (COUNTAPI)
+// ACESSOS GLOBAIS (COUNTAPI)
 function trackGlobalHits() {
-    const namespace = "simuladorclaro_junior_v3"; // Nome único para o seu contador
+    const namespace = "simuladorclaro_junior_v3";
     const today = new Date().toISOString().split('T')[0];
-    const month = today.substring(0, 7);
-
-    // Incrementa Hoje e Mês simultaneamente
-    fetch(`https://api.countapi.xyz/hit/${namespace}/total`).then(res => res.json()).then(data => {
-        $('hitsMonth').textContent = data.value;
-        $('hitsWeek').textContent = Math.floor(data.value * 0.3); // Estimativa semana
-    });
-
-    fetch(`https://api.countapi.xyz/hit/${namespace}_${today}/today`).then(res => res.json()).then(data => {
-        $('hitsToday').textContent = data.value;
-    });
+    fetch(`https://api.countapi.xyz/hit/${namespace}/total`).then(res => res.json()).then(data => { $('hitsMonth').textContent = data.value; });
+    fetch(`https://api.countapi.xyz/hit/${namespace}_${today}/today`).then(res => res.json()).then(data => { $('hitsToday').textContent = data.value; });
 }
 
 function addAcessorio() {
     const div = document.createElement("div"); div.className = "acessorio-row";
-    div.innerHTML = `<input type="text" placeholder="Acessório" class="ace-nome"><input type="number" placeholder="R$" class="ace-preco" style="width:90px" oninput="recalc()"><button class="btn-plus" style="background:#64748b" onclick="this.parentElement.remove(); recalc()">-</button>`;
+    div.innerHTML = `<input type="text" placeholder="Nome do acessório" class="ace-nome"><input type="number" placeholder="Ex.: 100,00" class="ace-preco" style="width:110px" oninput="recalc()"><button class="btn-plus" style="background:#64748b" onclick="this.parentElement.remove(); recalc()">-</button>`;
     $("acessoriosContainer").appendChild(div);
 }
 
@@ -224,7 +215,7 @@ function limparTudo() {
     document.querySelectorAll("input, textarea").forEach(el => el.value = "");
     document.querySelectorAll("select").forEach(el => el.selectedIndex = 0);
     $("parcelasSel").value = "21";
-    $("acessoriosContainer").innerHTML = `<div class="acessorio-row"><input type="text" placeholder="Acessório" class="ace-nome"><input type="number" placeholder="R$" class="ace-preco" style="width:90px" oninput="recalc()"><button class="btn-plus" onclick="addAcessorio()">+</button></div>`;
+    $("acessoriosContainer").innerHTML = `<div class="acessorio-row"><input type="text" placeholder="Nome do acessório" class="ace-nome"><input type="number" placeholder="Ex.: 100,00" class="ace-preco" style="width:110px" oninput="recalc()"><button class="btn-plus" onclick="addAcessorio()">+</button></div>`;
     recalc();
 }
 
@@ -272,12 +263,12 @@ function recalc() {
     $("outEcoTotalCom").textContent = brl((multi + (60 * parcelas)) - (up - incentivo));
     $("outResidual").textContent = brl(parseVal("residual"));
 
-    let tAce = 0; document.querySelectorAll(".ace-preco").forEach(el => tAce += parseFloat(el.value) || 0);
-    $("totalAcessorios").textContent = brl(tAce);
+    let tA = 0; document.querySelectorAll(".ace-preco").forEach(el => tA += parseFloat(el.value) || 0);
+    $("totalAcessorios").textContent = brl(tA);
     $("aceParcelaLabel").textContent = parcelas;
-    $("aceParcelaValor").textContent = brl(tAce / parcelas);
+    $("aceParcelaValor").textContent = brl(tA / parcelas);
 
-    const n = new Date(); $("msgValidade").textContent = `Simulação válida para: ${n.toLocaleDateString()} às ${n.toLocaleTimeString()}`;
+    const n = new Date(); $("msgValidade").textContent = `Esta simulação é válida apenas para a data: ${n.toLocaleDateString()} às ${n.toLocaleTimeString()}`;
 }
 
 function copiar() {
