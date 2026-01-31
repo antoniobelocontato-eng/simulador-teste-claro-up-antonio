@@ -7,25 +7,25 @@
 <style>
 :root{
   --claro-red:#e60000; --claro-red-dark:#c80000;
-  --bg:#f8f9fa; --card:#fff; --text:#111827; --muted:#64748b;
-  --border:#e2e8f0; --shadow:0 4px 6px -1px rgba(0,0,0,0.1); --radius:16px;
+  --bg:#f4f5f7; --card:#fff; --text:#111827; --muted:#64748b;
+  --border:#e5e7eb; --radius:14px; --shadow:0 10px 30px rgba(0,0,0,0.08);
   /* Cores dos Setores */
   --c-plano:#f0f7ff; --c-troca:#f0fff4; --c-oferta:#fff5f5; --c-outros:#fffbeb; --c-acessorios:#f8fafc;
 }
 *{box-sizing:border-box}
-body{margin:0;font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
-.topbar{background:var(--claro-red);color:#fff;padding:16px;position:sticky;top:0;z-index:100;box-shadow:0 4px 12px rgba(230,0,0,0.2)}
+body{margin:0;font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text)}
+
+.topbar{background:var(--claro-red);color:#fff;padding:14px 16px;position:sticky;top:0;z-index:100;box-shadow:0 4px 12px rgba(0,0,0,0.1)}
 .topbar .row{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
-.brand{font-weight:800;font-size:1.2rem;display:flex;align-items:center;gap:8px}
 
 main{max-width:1200px;margin:20px auto;padding:0 16px;display:grid;grid-template-columns:1fr;gap:20px}
-@media(min-width:1024px){ main{grid-template-columns:1.1fr 0.9fr} }
+@media(min-width:1024px){ main{grid-template-columns:1.05fr 0.95fr} }
 
-.sector-card{border-radius:var(--radius);border:1px solid var(--border);margin-bottom:16px;overflow:hidden;background:var(--card);box-shadow:var(--shadow)}
-.sector-hd{padding:12px 16px;font-weight:800;font-size:14px;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid rgba(0,0,0,0.05)}
+/* Cards de Preenchimento (Esquerda) */
+.sector-card{border-radius:var(--radius);border:1px solid var(--border);margin-bottom:16px;background:var(--card);box-shadow:var(--shadow);overflow:hidden}
+.sector-hd{padding:12px 16px;font-weight:800;font-size:13px;text-transform:uppercase;border-bottom:1px solid rgba(0,0,0,0.05)}
 .sector-bd{padding:16px}
 
-/* Cores específicas */
 .s-plano{background:var(--c-plano)}.s-plano .sector-hd{color:#0284c7}
 .s-troca{background:var(--c-troca)}.s-troca .sector-hd{color:#16a34a}
 .s-oferta{background:var(--c-oferta)}.s-oferta .sector-hd{color:var(--claro-red)}
@@ -35,34 +35,44 @@ main{max-width:1200px;margin:20px auto;padding:0 16px;display:grid;grid-template
 .field-group{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
 @media(max-width:600px){ .field-group{grid-template-columns:1fr} }
 
-.field{display:flex;flex-direction:column;gap:4px}
+.field{display:flex;flex-direction:column;gap:4px;margin-bottom:10px}
 label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase}
-input, select, textarea{padding:10px;border:1px solid var(--border);border-radius:8px;font-size:15px;width:100%}
-input:focus{outline:none;border-color:var(--claro-red);ring:2px solid rgba(230,0,0,0.1)}
+input, select, textarea{padding:10px;border:1px solid var(--border);border-radius:10px;font-size:15px;background:#fff}
 
+/* Acessórios Dinâmicos */
 .acessorio-row{display:flex;gap:8px;margin-bottom:8px;align-items:center}
-.btn-plus{background:var(--claro-red);color:#fff;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-weight:bold}
+.btn-plus{background:var(--claro-red);color:#fff;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-weight:bold}
 
-.total-box{margin-top:10px;padding-top:10px;border-top:1px dashed #cbd5e1;display:flex;justify-content:space-between;font-weight:800}
+/* Lado Direito (Resultados) */
+.results-column{display:flex;flex-direction:column;gap:16px}
+@media(min-width:1024px){ .results-column{position:sticky;top:80px;height:fit-content} }
 
-/* Cards de Resultado (Direita) */
-.res-card{background:#fff;border-radius:var(--radius);padding:16px;border:2px solid var(--claro-red);position:sticky;top:80px}
-.kpi-grid{display:grid;grid-template-columns:1fr;gap:10px}
-.kcard{padding:12px;border-bottom:1px solid var(--border)}
-.kcard:last-child{border:none}
-.k-val{font-size:22px;font-weight:900;color:var(--claro-red)}
+.res-card{background:#fff;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);padding:16px}
+.res-hd{font-weight:800;font-size:16px;margin-bottom:15px;display:flex;justify-content:space-between;align-items:center}
+.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:500px){ .kpi-grid{grid-template-columns:1fr} }
 
-.footer-info{grid-column:1/-1;background:#fff;padding:20px;border-radius:var(--radius);border:1px solid var(--border);text-align:center}
-.btn-copy{background:#25d366;color:#fff;border:none;padding:14px 24px;border-radius:999px;font-weight:800;cursor:pointer;width:100%;max-width:300px;margin-bottom:15px}
-.timestamp{font-size:12px;color:var(--muted);margin-top:10px}
+.kcard{border:1px solid var(--border);border-radius:12px;padding:12px;background:#fff}
+.k-label{font-size:11px;font-weight:700;color:var(--muted);line-height:1.2;margin-bottom:6px;display:block}
+.k-val{font-size:20px;font-weight:900;color:var(--text)}
+.k-sub{font-size:10px;color:var(--muted);margin-top:4px;display:block}
+.highlight{border:1px solid rgba(230,0,0,0.3);background:rgba(230,0,0,0.02)}
+.highlight .k-val{color:var(--claro-red)}
+
+.footer-full{grid-column:1/-1;background:#fff;padding:20px;border-radius:var(--radius);border:1px solid var(--border);text-align:center;margin-top:20px}
+.btn-whatsapp{background:#25d366;color:#fff;border:none;padding:14px 30px;border-radius:999px;font-weight:800;cursor:pointer;font-size:16px}
+.timestamp{margin-top:15px;font-size:12px;color:var(--muted);font-weight:bold}
+
+.badge-row{display:flex;gap:8px;margin-bottom:10px}
+.badge{padding:4px 8px;border-radius:6px;font-size:10px;font-weight:800;border:1px solid var(--claro-red);color:var(--claro-red)}
 </style>
 </head>
 <body>
 
 <div class="topbar">
     <div class="row">
-        <div class="brand">Claro Up – Simulador V3.0</div>
-        <div id="liveClock" style="font-size: 13px; opacity: 0.8;"></div>
+        <div class="brand">Simulador Claro Up – V3.0</div>
+        <div id="clock" style="font-size:13px; font-weight:bold"></div>
     </div>
 </div>
 
@@ -70,40 +80,37 @@ input:focus{outline:none;border-color:var(--claro-red);ring:2px solid rgba(230,0
     <div class="inputs-column">
         
         <div class="sector-card s-plano">
-            <div class="sector-hd">Plano Atual do Cliente</div>
+            <div class="sector-hd">1. Plano Atual do Cliente</div>
             <div class="sector-bd">
-                <div class="field" style="margin-bottom:12px">
-                    <label>Plano Atual (texto)</label>
-                    <input id="planoAtualNome" type="text" placeholder="Ex: Claro Multi 50GB">
-                </div>
+                <div class="field"><label>Plano atual do cliente (texto)</label><input id="planoAtualNome" type="text" placeholder="Ex: Claro Multi 100GB"></div>
                 <div class="field-group">
-                    <div class="field"><label>Preço Plano (R$)</label><input id="planoAtualPreco" inputmode="decimal"></div>
-                    <div class="field"><label>Dep. Pagos (Qtd)</label><input id="depPagos" type="number"></div>
-                    <div class="field"><label>Dep. Grátis (Qtd)</label><input id="depGratis" type="number"></div>
-                    <div class="field"><label>Seguro Atual (R$)</label><input id="seguroInteresse" inputmode="decimal"></div>
+                    <div class="field"><label>Preço do plano (R$ / mês)</label><input id="planoAtualPreco" inputmode="decimal"></div>
+                    <div class="field"><label>Dependentes pagos (Qtd)</label><input id="depPagos" type="number" placeholder="R$50 cada"></div>
+                    <div class="field"><label>Dependentes grátis (Qtd)</label><input id="depGratis" type="number"></div>
+                    <div class="field"><label>Seguro Aparelho Atual (R$)</label><input id="seguroInteresse" inputmode="decimal"></div>
                     <div class="field"><label>Claro Clube (Abatimento R$)</label><input id="claroClube" inputmode="decimal"></div>
-                    <div class="field"><label>Total Plano Atual</label><input id="totalPlanoAtual" readonly style="background:#f1f5f9; font-weight:bold"></div>
+                    <div class="field"><label>Valor total plano atual</label><input id="totalPlanoAtual" readonly style="background:#f8fafc;font-weight:900"></div>
                 </div>
             </div>
         </div>
 
         <div class="sector-card s-troca">
-            <div class="sector-hd">Troca Fone</div>
+            <div class="sector-hd">2. Troca Fone</div>
             <div class="sector-bd">
                 <div class="field-group">
-                    <div class="field"><label>Modelo Aparelho Troca</label><input id="modeloTroca" type="text" placeholder="Ex: iPhone 13"></div>
-                    <div class="field"><label>Incentivo Troca (R$)</label><input id="incentivoTroca" inputmode="decimal"></div>
+                    <div class="field"><label>Modelo Aparelho Troca</label><input id="modeloTroca" type="text" placeholder="Ex: iPhone 13 128GB"></div>
+                    <div class="field"><label>Incentivo Claro Troca (R$)</label><input id="incentivoTroca" inputmode="decimal"></div>
                 </div>
             </div>
         </div>
 
         <div class="sector-card s-oferta">
-            <div class="sector-hd">Valores de Aparelho (Claro Up)</div>
+            <div class="sector-hd">3. Valores de Aparelho (Família iPhone 17)</div>
             <div class="sector-bd">
-                <div class="field" style="margin-bottom:12px">
-                    <label>Modelo do iPhone Ofertado</label>
+                <div class="field">
+                    <label>Modelo do iPhone Ofertado (Claro Up)</label>
                     <select id="modeloOferta">
-                        <option value="">Selecione um modelo...</option>
+                        <option value="">Selecione o modelo...</option>
                         <optgroup label="iPhone 17">
                             <option>iPhone 17 256GB</option><option>iPhone 17 512GB</option>
                         </optgroup>
@@ -119,8 +126,199 @@ input:focus{outline:none;border-color:var(--claro-red);ring:2px solid rgba(230,0
                     </select>
                 </div>
                 <div class="field-group">
-                    <div class="field"><label>Pré-pago Total (R$)</label><input id="prePagoTotal" inputmode="decimal"></div>
-                    <div class="field"><label>Multi Total (R$)</label><input id="multiTotal" inputmode="decimal"></div>
-                    <div class="field"><label>Multi + Claro Up (R$)</label><input id="claroUpTotal" inputmode="decimal"></div>
-                    <div class="field"><label>Residual Up (R$)</label><input id="residual" inputmode="decimal"></div>
-                    <div class="field"><label>Parcel
+                    <div class="field"><label>Pré-pago – Total (R$)</label><input id="prePagoTotal" inputmode="decimal"></div>
+                    <div class="field"><label>Multi – Total (R$)</label><input id="multiTotal" inputmode="decimal"></div>
+                    <div class="field"><label>Multi + Claro Up – Total (R$)</label><input id="claroUpTotal" inputmode="decimal"></div>
+                    <div class="field"><label>Residual Claro Up (R$)</label><input id="residual" inputmode="decimal"></div>
+                </div>
+                <div class="field">
+                    <label>Parcelamento</label>
+                    <select id="parcelasSel">
+                        <option value="12">12x</option><option value="18">18x</option><option value="21" selected>21x</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="sector-card s-outros">
+            <div class="sector-hd">4. Outra opção de aparelho no plano atual</div>
+            <div class="sector-bd">
+                <div class="field-group">
+                    <div class="field"><label>Aparelho de interesse</label><input id="modeloInteresse" type="text"></div>
+                    <div class="field"><label>Valor Total (R$)</label><input id="totalInteresse" inputmode="decimal"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sector-card s-acessorios">
+            <div class="sector-hd">5. Acessórios</div>
+            <div class="sector-bd">
+                <div id="acessoriosContainer">
+                    <div class="acessorio-row">
+                        <input type="text" placeholder="Acessório" class="ace-nome">
+                        <input type="number" placeholder="R$" class="ace-preco" style="width:90px" oninput="recalc()">
+                        <button class="btn-plus" onclick="addAcessorio()">+</button>
+                    </div>
+                </div>
+                <div style="margin-top:15px; font-weight:900; display:flex; justify-content:space-between; border-top:1px solid #e2e8f0; padding-top:10px">
+                    <span>VALOR TOTAL ACESSÓRIOS:</span>
+                    <span id="totalAcessorios">R$ 0,00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="results-column">
+        <div class="res-card">
+            <div class="res-hd">Resultado e comparativo</div>
+            <div class="badge-row">
+                <div class="badge">CLARO UP (SEGURO GRÁTIS)</div>
+                <div class="badge">CLARO TROCA (ABATIMENTO)</div>
+            </div>
+            
+            <div class="kpi-grid">
+                <div class="kcard">
+                    <span class="k-label">Valor total do plano atual (plano + dep + seg)</span>
+                    <div class="k-val" id="outPlanoMensalAtual">R$ 0,00</div>
+                    <span class="k-sub" id="outPlanoMensalAtualDet">—</span>
+                </div>
+                
+                <div class="kcard">
+                    <span class="k-label">Pré-pago – parcela no cartão</span>
+                    <div class="k-val" id="outPrePagoParcela">R$ 0,00</div>
+                    <span class="k-sub">Total ÷ parcelas</span>
+                </div>
+
+                <div class="kcard highlight">
+                    <span class="k-label">Multi + Claro Up – parcela no cartão</span>
+                    <div class="k-val" id="outUpParcela">R$ 0,00</div>
+                    <span class="k-sub">Seguro Proteção Móvel Grátis</span>
+                </div>
+
+                <div class="kcard highlight" style="border-color:#16a34a; background:#f0fff4">
+                    <span class="k-label" style="color:#16a34a">Multi + Up + Troca – parcela no cartão</span>
+                    <div class="k-val" id="outUpTrocaParcela" style="color:#16a34a">R$ 0,00</div>
+                    <span class="k-sub">(Total − incentivo) ÷ parcelas</span>
+                </div>
+
+                <div class="kcard">
+                    <span class="k-label">Multi – parcela no cartão (com Proteção Móvel)</span>
+                    <div class="k-val" id="outMultiParcela">R$ 0,00</div>
+                    <span class="k-sub">R$60 do seguro cobrado na fatura</span>
+                </div>
+
+                <div class="kcard">
+                    <span class="k-label">Plano atual – parcela (com seguro atual)</span>
+                    <div class="k-val" id="outInteresseParcela">R$ 0,00</div>
+                    <span class="k-sub">Comparativo com aparelho de interesse</span>
+                </div>
+
+                <div class="kcard" style="grid-column: 1 / -1; background:#f8fafc">
+                    <span class="k-label">Economia Total no Aparelho (Sem Troca)</span>
+                    <div class="k-val" id="outEcoAparelhoSem" style="color:#e60000">R$ 0,00</div>
+                    <span class="k-sub">Considerando a isenção do Seguro (R$60/mês)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-full">
+        <button class="btn-whatsapp" onclick="copiar()">Copiar Resumo (WhatsApp)</button>
+        <div class="field" style="max-width:600px; margin:20px auto 10px">
+            <label>Observações da Proposta</label>
+            <textarea id="obs" placeholder="Ex: Condição válida para portabilidade..."></textarea>
+        </div>
+        <div class="timestamp" id="msgValidade"></div>
+    </div>
+</main>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const brl = (v) => Number(v).toLocaleString("pt-BR", { style:"currency", currency:"BRL" });
+
+function addAcessorio() {
+    const div = document.createElement("div");
+    div.className = "acessorio-row";
+    div.innerHTML = `<input type="text" placeholder="Acessório" class="ace-nome">
+                     <input type="number" placeholder="R$" class="ace-preco" style="width:90px" oninput="recalc()">
+                     <button class="btn-plus" style="background:#64748b" onclick="this.parentElement.remove(); recalc()">-</button>`;
+    $("acessoriosContainer").appendChild(div);
+}
+
+function parseVal(id) {
+    let v = $(id).value.replace(/\./g, '').replace(',', '.');
+    return parseFloat(v) || 0;
+}
+
+function recalc() {
+    const parcelas = parseInt($("parcelasSel").value);
+    const planoPreco = parseVal("planoAtualPreco");
+    const depPagos = parseInt($("depPagos").value) || 0;
+    const seguroAtual = parseVal("seguroInteresse");
+    const clube = parseVal("claroClube");
+
+    // 1. Plano Atual
+    const totalPlano = planoPreco + (depPagos * 50) + seguroAtual;
+    $("totalPlanoAtual").value = brl(totalPlano);
+    $("outPlanoMensalAtual").textContent = brl(totalPlano);
+    $("outPlanoMensalAtualDet").textContent = `Plano: ${brl(planoPreco)} | Dep: ${depPagos} | Seg: ${brl(seguroAtual)}`;
+
+    // 2. Aparelhos e Up
+    const upTotal = Math.max(0, parseVal("claroUpTotal") - clube);
+    const multiTotal = Math.max(0, parseVal("multiTotal") - clube);
+    const prePago = parseVal("prePagoTotal");
+    const incentivo = parseVal("incentivoTroca");
+    
+    // Parcela Up (Seguro Grátis)
+    const upParc = upTotal / parcelas;
+    $("outUpParcela").textContent = brl(upParc);
+
+    // Parcela Up com Troca
+    const upTrocaParc = Math.max(0, upTotal - incentivo) / parcelas;
+    $("outUpTrocaParcela").textContent = brl(upTrocaParc);
+
+    // Parcela Pré-pago
+    $("outPrePagoParcela").textContent = brl(prePago / parcelas);
+
+    // Parcela Multi (Com Seguro R$60 na fatura)
+    const multiParcCartao = multiTotal / parcelas;
+    $("outMultiParcela").textContent = brl(multiParcCartao + 60);
+
+    // Parcela Aparelho Interesse
+    const interesseTotal = parseVal("totalInteresse");
+    $("outInteresseParcela").textContent = brl((interesseTotal / parcelas) + seguroAtual);
+
+    // Economia Total (Lógica original: Multi + Seguros - Up)
+    const ecoAparelho = (multiTotal + (60 * parcelas)) - upTotal;
+    $("outEcoAparelhoSem").textContent = brl(ecoAparelho);
+
+    // Soma Acessórios
+    let totalAce = 0;
+    document.querySelectorAll(".ace-preco").forEach(el => totalAce += parseFloat(el.value) || 0);
+    $("totalAcessorios").textContent = brl(totalAce);
+
+    // Data e Hora
+    const agora = new Date();
+    $("msgValidade").textContent = `Esta simulação é válida apenas para a data: ${agora.toLocaleDateString()} às ${agora.toLocaleTimeString()}`;
+}
+
+function copiar() {
+    const agora = new Date();
+    let txt = `*SIMULAÇÃO CLARO UP*\n`;
+    txt += `📅 ${agora.toLocaleDateString()} às ${agora.toLocaleTimeString()}\n\n`;
+    txt += `📱 *Aparelho:* ${$("modeloOferta").value || "—"}\n`;
+    txt += `💳 *Parcela Up:* ${$("outUpParcela").textContent}\n`;
+    if(parseVal("incentivoTroca") > 0) txt += `♻️ *Com Troca:* ${$("outUpTrocaParcela").textContent}\n`;
+    txt += `\n*Acessórios:* ${$("totalAcessorios").textContent}\n`;
+    txt += `*Economia Estimada:* ${$("outEcoAparelhoSem").textContent}\n`;
+    if($("obs").value) txt += `\n*Obs:* ${$("obs").value}`;
+    
+    navigator.clipboard.writeText(txt).then(() => alert("Resumo copiado!"));
+}
+
+setInterval(() => { $("clock").textContent = new Date().toLocaleTimeString(); }, 1000);
+document.querySelectorAll("input, select, textarea").forEach(el => el.addEventListener("input", recalc));
+window.onload = recalc;
+</script>
+</body>
+</html>
