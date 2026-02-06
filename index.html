@@ -157,30 +157,23 @@ input, select, textarea{padding:10px;border:1px solid var(--border);border-radiu
             <div class="res-title">Resultado e comparativo</div>
             <div class="k-grid">
                 <div class="k-box"><span class="k-label">Valor total do plano atual (plano + dep + seg)</span><div class="k-val" id="outPlanoMensalAtual">R$ 0,00</div><span class="k-sub" id="outPlanoDet">—</span><span class="red-repeat rep-atual"></span></div>
-                
                 <div class="k-box"><span class="k-label">Plano sugerido – custo mensal (considerando dep. grátis)</span><div class="k-val" id="outPlanoSugerido">R$ 0,00</div><span class="k-sub" id="outPlanoSugeridoDet">—</span><span class="red-repeat rep-sug"></span></div>
-                
                 <div class="k-box"><span class="k-label">Pré-pago – parcela no cartão</span><div class="k-val" id="outPrePagoParc">R$ 0,00</div><span class="k-sub">Pré-pago total ÷ parcelas (sem Claro Clube)</span></div>
-                
                 <div class="k-box">
                     <span class="k-label">Multi – parcela no cartão (com Proteção Móvel)</span>
                     <div class="k-val" id="outMultiParc">R$ 0,00</div>
                     <span class="k-sub">Com abatimento Claro Clube + R$60 seguro</span>
                     <span class="red-repeat rep-atual"></span>
                 </div>
-
                 <div class="k-box"><span class="k-label">Multi + Claro Up – parcela no cartão</span><div class="k-val" id="outUpParc">R$ 0,00</div><span class="k-sub">Com abatimento Claro Clube (seguro grátis)</span><span class="red-repeat rep-sug"></span></div>
-                
                 <div class="k-box"><span class="k-label">Multi + Claro Up + Troca – parcela no cartão</span><div class="k-val" id="outUpTrocaParc">R$ 0,00</div><span class="k-sub">Claro Clube + Incentivo Troca</span><span class="red-repeat rep-sug"></span></div>
-                
                 <div class="k-box res-opcional"><span class="k-label">Plano atual – aparelho de interesse (R$)</span><div class="k-val" id="outInteresseTotal">R$ 0,00</div><span class="k-sub">Valor Total com abatimento Claro Clube</span><span class="red-repeat rep-atual"></span></div>
-                
                 <div class="k-box res-opcional"><span class="k-label">Plano atual – parcela (com seguro atual)</span><div class="k-val" id="outInteresseParc">R$ 0,00</div><span class="k-sub">Parcela com abatimento Claro Clube</span><span class="red-repeat rep-atual"></span></div>
             </div>
 
             <div class="eco-card"><span class="eco-label">Economia Mensal — Multi vs Up (sem troca)</span><span class="eco-val" id="outEcoMensal">R$ 60,00</span><div style="font-size:11px; color:var(--muted); border-top:1px solid #eee; margin-top:8px; padding-top:8px"><strong>Economia total fazendo Claro Multi com Claro Up</strong><br><span id="outEcoTotalSem" style="font-size:16px; color:var(--claro-red); font-weight:900">R$ 0,00</span></div></div>
             
-            <div class="k-box"><span class="k-label">Residual Claro Up (22º mês)</span><div class="k-val" id="outResidual">R$ 0,00</div><span class="k-sub">Quitação ou re-parcelamento em 12x</span></div>
+            <div class="k-box"><span class="k-label">Residual Claro Up (22º mês)</span><div class="k-val" id="outResidual">R$ 0,00</div><span class="k-sub">Quitação ou re-parcelamento em 12x. Após o 21º mês, é a data limite para escolher quitar o residual e ficar com o aparelho ou entregá-lo para quitar o residual e renovar o Claro Up pegando um novo iPhone.</span></div>
 
             <button class="btn-whatsapp" onclick="copiar()">Copiar Resumo (WhatsApp)</button>
             <div class="field" style="margin-top:15px"><label>Observações da proposta</label><textarea id="obs" rows="2" placeholder="Ex.: condição especial..."></textarea></div>
@@ -212,46 +205,44 @@ function parseVal(id) {
 }
 
 function recalc() {
-    const nomeAtualInput = $("planoAtualNome").value || "Plano Atual";
-    const planoSel = $("planoSugerido");
-    const nomeSugerido = planoSel.options[planoSel.selectedIndex].text.split(' — ')[0];
+    const nomeAtu = $("planoAtualNome").value || "Plano Atual";
+    const pSel = $("planoSugerido");
+    const nomeSug = pSel.options[pSel.selectedIndex].text.split(' — ')[0];
 
-    document.querySelectorAll('.rep-atual').forEach(el => el.textContent = nomeAtualInput);
-    document.querySelectorAll('.rep-sug').forEach(el => el.textContent = (nomeSugerido === "(sem seleção)") ? "" : nomeSugerido);
+    document.querySelectorAll('.rep-atual').forEach(el => el.textContent = nomeAtu);
+    document.querySelectorAll('.rep-sug').forEach(el => el.textContent = (nomeSug === "(sem seleção)") ? "" : nomeSug);
 
     const parcelas = parseInt($("parcelasSel").value);
     const precoPlano = parseVal("planoAtualPreco");
-    const depPagos = parseInt($("depPagos").value) || 0;
-    const depGratis = parseInt($("depGratis").value) || 0;
-    const seguroAtual = parseVal("seguroInteresse");
+    const depP = parseInt($("depPagos").value) || 0;
+    const depG = parseInt($("depGratis").value) || 0;
+    const seg = parseVal("seguroInteresse");
     const clube = parseVal("claroClube");
 
-    const totalPlanoAtu = precoPlano + (depPagos * 50) + seguroAtual;
+    const totalPlanoAtu = precoPlano + (depP * 50) + seg;
     $("outPlanoMensalAtual").textContent = brl(totalPlanoAtu);
-    $("outPlanoDet").textContent = `Plano: ${brl(precoPlano)} | Dep Pagos: ${depPagos} | Dep Grátis: ${depGratis} | Seg: ${brl(seguroAtual)}`;
+    $("outPlanoDet").textContent = `Plano: ${brl(precoPlano)} | Dep Pagos: ${depP} | Dep Grátis: ${depG} | Seg: ${brl(seg)}`;
 
     const sugData = $("planoSugerido").value.split("|");
     if(sugData.length === 2) {
         const pSug = parseFloat(sugData[0]);
         const gSug = parseInt(sugData[1]);
-        const pAdic = Math.max(0, (depPagos + depGratis) - gSug);
+        const pAdic = Math.max(0, (depP + depG) - gSug);
         $("outPlanoSugerido").textContent = brl(pSug + (pAdic * 50));
         $("outPlanoSugeridoDet").textContent = `Grátis no plano: ${gSug} | Pagos adic: ${pAdic}`;
     }
 
-    const preTotal = parseVal("prePagoTotal");
     const multiBase = Math.max(0, parseVal("multiTotal") - clube);
     const upBase = Math.max(0, parseVal("claroUpTotal") - clube);
     const incentivo = parseVal("incentivoTroca");
-    const intBase = Math.max(0, parseVal("totalInteresse") - clube);
-
-    $("outPrePagoParc").textContent = brl(preTotal / parcelas);
+    
+    $("outPrePagoParc").textContent = brl(parseVal("prePagoTotal") / parcelas);
     $("outMultiParc").textContent = brl((multiBase / parcelas) + (multiBase > 0 ? 60 : 0));
     $("outUpParc").textContent = brl(upBase / parcelas);
     $("outUpTrocaParc").textContent = brl(Math.max(0, upBase - incentivo) / parcelas);
     
-    $("outInteresseTotal").textContent = brl(intBase);
-    $("outInteresseParc").textContent = brl((intBase / parcelas) + (intBase > 0 ? seguroAtual : 0));
+    $("outInteresseTotal").textContent = brl(Math.max(0, parseVal("totalInteresse") - clube));
+    $("outInteresseParc").textContent = brl((Math.max(0, parseVal("totalInteresse") - clube) / parcelas) + (parseVal("totalInteresse") > 0 ? seg : 0));
 
     const ecoM = (multiBase > 0) ? (((multiBase/parcelas)+60) - (upBase/parcelas)) : 60;
     $("outEcoMensal").textContent = brl(ecoM);
@@ -268,9 +259,9 @@ function recalc() {
 
 function copiar() {
     const n = new Date();
-    const dataHora = `${n.toLocaleDateString()} às ${n.toLocaleTimeString()}`;
-    const planoSel = $("planoSugerido");
-    const nomeSug = planoSel.options[planoSel.selectedIndex].text;
+    const pSel = $("planoSugerido");
+    const nomeSug = pSel.options[pSel.selectedIndex].text;
+    const parcelas = $("parcelasSel").value;
     
     let aceTxt = ""; let tA = 0;
     document.querySelectorAll(".acessorio-row").forEach(r => {
@@ -289,15 +280,23 @@ function copiar() {
     }
 
     txt += `3️⃣ *Aparelho Ofertado:* ${$("modeloOferta").value}\n   Valor Preço Cheio: ${brl(parseVal("prePagoTotal"))}\n\n`;
-    txt += `4️⃣ *Parcelamento:* ${$("parcelasSel").value}x de ${$("outUpParc").textContent}\n\n`;
-    txt += `5️⃣ *Valor Residual:* ${brl(parseVal("residual"))}\n\n`;
+    
+    txt += `4️⃣ *Parcelamento:* ${$("modeloOferta").value} no Claro Multi Up\n`;
+    txt += `   🔹 Preço em ${parcelas}x sem Claro Troca: ${$("outUpParc").textContent}\n`;
+    if(parseVal("incentivoTroca") > 0) {
+        txt += `   🔹 Preço em ${parcelas}x COM Claro Troca: ${$("outUpTrocaParc").textContent}\n`;
+    }
+    txt += `\n`;
+
+    txt += `5️⃣ *Valor Residual:* ${brl(parseVal("residual"))}\n`;
+    txt += `   _Após o 21º mês, é a data limite para escolher quitar o residual e ficar com o aparelho ou entregá-lo para quitar o residual e renovar o Claro Up pegando um novo iPhone._\n\n`;
 
     if(tA > 0) {
-        txt += `6️⃣ *Acessórios:*\n${aceTxt}   Total: ${brl(tA)} (${$("parcelasSel").value}x de ${$("aceParcelaValor").textContent})\n\n`;
+        txt += `6️⃣ *Acessórios:*\n${aceTxt}   Total: ${brl(tA)} (${parcelas}x de ${$("aceParcelaValor").textContent})\n\n`;
     }
 
     txt += `7️⃣ *Observações:* ${$("obs").value || 'Nenhuma'}\n\n`;
-    txt += `8️⃣ _Esta simulação é válida apenas para a data: ${dataHora}_`;
+    txt += `8️⃣ _${$("msgValidade").textContent}_`;
 
     navigator.clipboard.writeText(txt).then(() => alert("Copiado!"));
 }
