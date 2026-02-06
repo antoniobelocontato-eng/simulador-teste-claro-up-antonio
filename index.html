@@ -199,6 +199,29 @@ function addAcessorio() {
     $("acessoriosContainer").appendChild(div);
 }
 
+// BOTÃO LIMPAR - FUNÇÃO CORRIGIDA
+function limparTudo() {
+    if(!confirm("Deseja limpar todos os dados da simulação?")) return;
+    
+    // Limpa todos os Inputs e Textareas
+    document.querySelectorAll("input, textarea").forEach(el => el.value = "");
+    
+    // Reseta todos os Selects
+    document.querySelectorAll("select").forEach(el => el.selectedIndex = 0);
+    
+    // Garante que o parcelamento volte para 21x
+    $("parcelasSel").value = "21";
+    
+    // Reseta o container de acessórios para o estado inicial
+    $("acessoriosContainer").innerHTML = `<div class="acessorio-row"><input type="text" placeholder="Nome do acessório" class="ace-nome" style="flex:1"><input type="number" placeholder="Ex.: 100,00" class="ace-preco" style="width:110px" oninput="recalc()"><button class="btn-plus" onclick="addAcessorio()">+</button></div>`;
+    
+    // Remove a classe collapsed se existir (opcional, para abrir os cards de novo)
+    document.querySelectorAll(".sector-card").forEach(card => card.classList.remove("collapsed"));
+    
+    // Recalcula para zerar os visores à direita
+    recalc();
+}
+
 function parseVal(id) { 
     let v = $(id).value.replace(/\./g, '').replace(',', '.'); 
     return parseFloat(v) || 0; 
@@ -258,7 +281,6 @@ function recalc() {
 }
 
 function copiar() {
-    const n = new Date();
     const pSel = $("planoSugerido");
     const nomeSug = pSel.options[pSel.selectedIndex].text;
     const parcelas = $("parcelasSel").value;
